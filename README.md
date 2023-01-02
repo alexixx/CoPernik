@@ -1,4 +1,4 @@
-# Pizza application
+# React-template
 
 ## Available Scripts
 
