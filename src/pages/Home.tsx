@@ -1,118 +1,69 @@
+import axios from 'axios';
 import { useState, useEffect, useRef, useCallback, FC } from 'react';
-import qs from 'qs';
 
-import Sort, { sortList } from '../components/Sort';
-import Categories from '../components/Categories';
-import PizzaBlock from '../components/PizzaBlock';
-import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination';
-import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId, setFilters } from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/pizzaSlice';
-import { useNavigate, Link } from 'react-router-dom';
-import { RootState } from '../redux/store';
+import packageList from '../../package.json';
 
-type PizzaBlockProps = {
-  id: string;
-  title: string;
-  price: number;
-  imageUrl: string;
-  sizes: number[];
-  types: number[];
-};
+type PackageItem = {
+  name: string;
+  homepage?: string;
+}[];
 
 export const Home: FC = () => {
-  const isSearch = useRef(false);
-  const isMounted = useRef(false);
+  const [packagesData, setPackagesData] = useState<PackageItem>();
+  const [status, setStatus] = useState('pending');
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const packageListFormatter = async () => {
+    let arr: PackageItem = [];
 
-  // const categoryId = useSelector((state: RootState) => state.filter.categoryId);
-  // const sort = useSelector((state: RootState) => state.filter.sort);
-  const dataPagination = useSelector((state: RootState) => state.filter.pagination);
-  // const search = useSelector((state: RootState) => state.filter.search);
-
-  const { categoryId, sort, search } = useSelector((state: RootState) => state.filter);
-
-  const pizzas = useSelector((state: RootState) => state.pizzas.items);
-  const status = useSelector((state: RootState) => state.pizzas.status);
-
-  // const { pizzas, status } = useSelector((state: RootState) => state.pizzas);
-
-  const onChangeCategory = useCallback((id: number) => {
-    dispatch(setCategoryId(id));
-  }, []);
-
-  useEffect(() => {
-    if (window.location.search) {
-      const params = qs.parse(window.location.search.replace(/^./gim, ''));
-      const sort = sortList.find((obj) => obj.sortType === params.sortType);
-
-      if (sort && params) {
-        dispatch(
-          setFilters({
-            sort,
-            categoryId: Number(params.categoryId),
-            pagination: {
-              currentPage: Number(params.currentPage),
-              pageCount: dataPagination.pageCount,
-              pageRangeDisplayed: dataPagination.pageRangeDisplayed,
-            },
-            search: search,
-          }),
-        );
+    for (let key in packageList.dependencies) {
+      if (!/^@(.*)[\/]/.test(key)) {
+        await axios
+          .get(`https://api.npms.io/v2/package/${key}`)
+          .then(function (response) {
+            arr.push({
+              name: key,
+              homepage: response.data.collected.github.homepage,
+            });
+          })
+          .catch(function (error) {
+            arr.push({
+              name: key,
+            });
+          });
       }
-
-      isSearch.current = true;
     }
-  }, []);
+    console.log(arr);
 
-  const getPizzas = async () => {
-    try {
-      // @ts-ignore
-      dispatch(fetchPizzas({ categoryId, sort, dataPagination, search }));
-    } catch (error) {}
-
-    // dispatch(setPageCount(Math.ceil(pizzas.length / dataPagination.pageRangeDisplayed)));
+    setPackagesData(arr);
+    setStatus('success');
   };
 
   useEffect(() => {
-    if (!isSearch.current) getPizzas();
-    isSearch.current = false;
-  }, [categoryId, sort, dataPagination, search]);
+    packageListFormatter();
+  }, []);
 
-  useEffect(() => {
-    if (isMounted.current) {
-      const queryString = qs.stringify({
-        sortType: sort.sortType,
-        categoryId,
-        page: dataPagination.currentPage,
-      });
-
-      navigate(`?${queryString}`);
-    }
-    isMounted.current = true;
-  }, [categoryId, sort, dataPagination, search]);
-
+  if (!packagesData) {
+    return <div>Loading</div>;
+  }
   return (
     <>
-      <div className="content__top">
-        <Categories value={categoryId} onChangeCategory={(id) => onChangeCategory(id)} />
-        <Sort />
-      </div>
-      <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items content__items--home">
-        {status === 'pending' ? (
-          [...new Array(6)].map((item, index) => <Skeleton key={index} />)
-        ) : pizzas.length ? (
-          pizzas.map((obj: PizzaBlockProps) => <PizzaBlock key={obj.id} {...obj} />)
+      <div className="content__top"></div>
+      <h2 className="content__title">react-template</h2>
+      <h3 className="content__subtitle">contains:</h3>
+      <div className="dependencies__list">
+        {status == 'pending' ? (
+          <div>Загрузка</div>
         ) : (
-          <h2 className="content__title--center">Такую еще не придумали 😊</h2>
+          packagesData.map((item, index) => (
+            <a key={index} href={item.homepage} target="_blank" className="dependencies__item">
+              {item.name}
+            </a>
+          ))
         )}
       </div>
-
-      <Pagination />
+      <a className="copyright" href="https://github.com/alexixx">
+        by Alexixx
+      </a>
     </>
   );
 };
