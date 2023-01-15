@@ -1,4 +1,4 @@
-# React-template
+# CoPernik
 
 ## Available Scripts
 
