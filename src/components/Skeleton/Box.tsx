@@ -2,12 +2,12 @@ import { FC } from 'react';
 import ContentLoader from 'react-content-loader';
 
 const Skeleton: FC = () => (
-  <div className="pizza-block__wrapper">
+  <div className="skeleton-wrapper">
     <ContentLoader
       speed={2}
       width={280}
       height={480}
-      className="pizza-block__skeleton"
+      className="skeleton skeleton--simple-row"
       viewBox="0 0 280 480"
       backgroundColor="#f3f3f3"
       foregroundColor="#ecebeb">

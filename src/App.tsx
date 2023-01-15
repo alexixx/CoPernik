@@ -14,6 +14,8 @@ function App() {
       <Header />
       <div className="content">
         <div className="container">
+          <h2 className="content__title">react-template</h2>
+          <p className="content__subtitle">contains:</p>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="*" element={<NotFound />} />

@@ -13,12 +13,15 @@ body {
 .container {
   width: 1200px;
   margin: auto;
-  padding-bottom: 30px;
+  padding: 15px 0px;
 }
 .content {
   &__title {
-    margin-top: 100px;
     color: white;
+  }
+  &__subtitle {
+    color: white;
+    margin-bottom: 17px;
   }
 }
 
@@ -32,14 +35,28 @@ body {
   }
   &__item {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+
     align-items: flex-start;
     color: $white;
     width: 100%;
     color: rgb(222, 222, 222);
     width: 100%;
     padding: 5px 0;
+
+    animation: fade-in 0.2s forwards ease-in-out;
+  }
+  &-icon {
+    fill: $white;
+    margin-right: 5px;
+    width: 25px;
+  }
+  & .skeleton-wrapper {
+    &:nth-child(2) {
+      opacity: 0.5;
+    }
+    &:nth-child(3) {
+      opacity: 0.2;
+    }
   }
 }
 .copyright {
@@ -47,4 +64,34 @@ body {
   font-size: 14px;
   color: $white;
   margin-top: 120px;
+}
+
+// SKELETON
+
+.skeleton {
+  &-wrapper {
+    position: relative;
+  }
+  &--simple-row {
+    &:future {
+      opacity: 0.3;
+    }
+  }
+}
+.hide-block {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(180deg, $black, transparent);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
