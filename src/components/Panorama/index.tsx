@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect, useRef, useCallback, FC } from 'react';
-import Menu from '../components/Menu';
-import Skeleton from '../components/Skeleton';
 
 type PackageItem = {
   name: string;
@@ -9,11 +7,7 @@ type PackageItem = {
 }[];
 
 export const Home: FC = () => {
-  return (
-    <>
-      <Menu />
-    </>
-  );
+  return <></>;
 };
 
 export default Home;

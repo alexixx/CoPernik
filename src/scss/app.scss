@@ -3,97 +3,94 @@
 
 @import './components/all.scss';
 
-a:hover {
-  text-decoration: underline;
-}
-
 body {
   background-color: $background;
 }
-.container {
-  width: 1200px;
-  margin: auto;
-  padding: 15px 0px;
+// .container {
+//   width: 1200px;
+//   margin: auto;
+//   padding: 15px 0px;
+// }
+.wrapper {
+  height: 100vh;
 }
-.content {
-  &__title {
-    color: white;
-  }
-  &__subtitle {
-    color: white;
-    margin-bottom: 17px;
-  }
+.container {
+  height: 100%;
 }
 
-// DEPENDENCIES
-.dependencies {
+// MENU
+.menu {
   &__list {
-    width: 100%;
     display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
   &__item {
-    display: flex;
-
-    align-items: flex-start;
+    font-size: 80px;
     color: $white;
-    width: 100%;
-    color: #dedede;
-    width: 100%;
-    padding: 5px 0;
-
-    animation: fade-in 0.2s forwards ease-in-out;
-  }
-  &-icon {
-    fill: $white;
-    margin-right: 5px;
-    width: 25px;
-  }
-  & .skeleton-wrapper {
-    &:nth-child(2) {
-      opacity: 0.5;
-    }
-    &:nth-child(3) {
-      opacity: 0.2;
-    }
+    padding: 30px 0;
   }
 }
-.copyright {
-  display: block;
-  font-size: 14px;
-  color: $white;
-  margin-top: 120px;
-}
-
-// SKELETON
-
-.skeleton {
-  &-wrapper {
-    position: relative;
-  }
-  &--simple-row {
-    &:future {
-      opacity: 0.3;
-    }
-  }
-}
-.hide-block {
-  position: absolute;
-  left: 0;
-  right: 0;
+.panorama-main {
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(180deg, $black, transparent);
+}
+.map {
+  &--mini {
+    z-index: 3;
+    position: absolute;
+    right: 20px;
+    bottom: 80px;
+    width: 350px;
+    height: 220px;
+  }
+
+  &__popup {
+  }
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
+.popup {
+  &--mini {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    position: absolute;
+    top: 30px;
+    left: 25%;
+    width: 180px;
+    height: 120px;
+    background-color: $green;
+    border-radius: 5px;
+    padding: 10px;
   }
-  to {
-    opacity: 1;
+  &__question {
+    color: #fff;
   }
-}
-.test {
+  &__btn-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  & button {
+    cursor: pointer;
+    color: $white;
+    padding: 5px 15px;
+    background: #232323;
+    border: none;
+    border-radius: 4px;
+
+    &:first-child {
+      margin-right: 5px;
+    }
+    &:hover {
+      background-color: #4a4a4a;
+      transition: 0.1s;
+    }
+
+    &:active {
+      transform: scale(1.07);
+    }
+  }
 }

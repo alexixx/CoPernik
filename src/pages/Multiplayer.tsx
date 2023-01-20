@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useState, useEffect, useRef, useCallback, FC } from 'react';
-import Menu from '../components/Menu';
 import Skeleton from '../components/Skeleton';
 
 type PackageItem = {
@@ -8,12 +7,8 @@ type PackageItem = {
   homepage?: string;
 }[];
 
-export const Home: FC = () => {
-  return (
-    <>
-      <Menu />
-    </>
-  );
+export const Multiplayer: FC = () => {
+  return <></>;
 };
 
-export default Home;
+export default Multiplayer;
