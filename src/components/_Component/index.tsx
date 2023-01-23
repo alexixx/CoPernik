@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import anime from 'animejs';
 import { Link } from 'react-router-dom';
 
-import { addItem, CartItemProps } from '../../redux/slices/cartSlice';
+import { CartItemProps } from '../../redux/slices/pointsSlice';
 
 const typeNames = ['Тонкое', 'Традиционное'];
 
@@ -43,8 +43,6 @@ const PizzaBlock: FC<PizzaBlockProps> = ({ id, title, price, imageUrl, sizes, ty
       size: sizes[activeSize],
       type: typeNames[activeType],
     };
-
-    dispatch(addItem(item));
   };
 
   // ANIMATION
