@@ -15,12 +15,11 @@ import { useSelector, useDispatch } from 'react-redux';
 export const Singleplayer: FC = () => {
   //key: 'c2b47d53-207f-4593-9c59-b6e18207f6c2'
 
-  const finalPoints = useSelector((state: RootState) => state.points.finalCoords);
   return (
     <>
       <Panorama />
       <Minimap />
-      {finalPoints && <Result />}
+      <Result />
     </>
   );
 };

@@ -94,3 +94,24 @@ body {
     }
   }
 }
+.modal-window {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  left: 25%;
+  top: 10%;
+  border-radius: 4px;
+  background-color: #232323;
+  filter: drop-shadow(2px 4px 6px rgb(222, 222, 222));
+  &__title {
+  }
+  &__subtitle {
+  }
+  &__description {
+  }
+  &__btn {
+  }
+  * {
+    color: $white;
+  }
+}

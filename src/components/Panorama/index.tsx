@@ -12,23 +12,26 @@ const BigPanorama = () => {
     setPoints();
   }, []);
   const setPoints = () => {
+    // Set coordinates of the selected panorama
     dispatch(setCurrentPoints([getRandomNumbers(55.7, 55.8), getRandomNumbers(37.5, 37.6)]));
   };
 
   const getRandomNumbers = (min: number, max: number) => {
+    // Get random coords for panorama
     return Number((Math.random() * (max - min) + min).toFixed(6));
   };
   return (
-    <YMaps key="panorama" query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
-      <div className="panorama-main">
-        <Panorama
-          point={currentPoints}
-          options={{ controls: [''] }}
-          width={'100%'}
-          height={'100%'}
-        />
-      </div>
-    </YMaps>
+    <></>
+    // <YMaps key="panorama" query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
+    //   <div className="panorama-main">
+    //     <Panorama
+    //       point={currentPoints}
+    //       options={{ controls: [''] }}
+    //       width={'100%'}
+    //       height={'100%'}
+    //     />
+    //   </div>
+    // </YMaps>
   );
 };
 

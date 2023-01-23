@@ -17,7 +17,7 @@ export type CartItemProps = {
 interface CartSliceState {
   currentCoords: number[];
   selectedCoords: number[];
-  finalCoords: number[];
+  finalCoords: number[] | null;
 }
 
 const initialState: CartSliceState = {

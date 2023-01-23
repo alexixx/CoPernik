@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Singleplayer from './pages/Singleplayer';
 import Multiplayer from './pages/Multiplayer';
+import Game from './components/Game';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/singleplayer" element={<Singleplayer />} />
-          <Route path="/multiplayer" element={<Singleplayer />} />
+          <Route path="/multiplayer" element={<Multiplayer />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

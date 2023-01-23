@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { CartItemProps } from '../redux/slices/pointsSlice';
 import { RootState } from '../redux/store';
-import Search from './Search';
 
 const Header: React.FC = () => {
   const location = useLocation();

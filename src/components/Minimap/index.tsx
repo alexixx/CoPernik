@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Map, YMaps, Polyline } from 'react-yandex-maps';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { setSelectedPoints, setFinalPoints } from '../../redux/slices/pointsSlice';
 
 type DataPolyline = number[][];
 
 const Minimap = () => {
-  const [selectedPoints, setSelectedPoints] = useState<any>([0, 0]);
-  const [finalPoints, setFinalPoints] = useState<any>();
+  const dispatch = useDispatch();
+  // const [selectedPoints, setSelectedPoints] = useState<any>([0, 0]);
+  // const [finalPoints, setFinalPoints] = useState<any>();
   const [zoom, setZoom] = useState(1);
   const [popupStatus, setPopupStatus] = useState(false);
   const [polyLine, setPolyLine] = useState<DataPolyline>([
@@ -16,22 +18,27 @@ const Minimap = () => {
   ]);
 
   const currentPoints = useSelector((state: RootState) => state.points.currentCoords);
+  const selectedPoints = useSelector((state: RootState) => state.points.selectedCoords);
+  const finalPoints = useSelector((state: RootState) => state.points.finalCoords);
 
   const clickOnMiniMap = (e: any) => {
-    console.log(e);
-
-    setSelectedPoints(e.get('coords'));
+    // fixing the selected coordinates
+    dispatch(setSelectedPoints(e.get('coords')));
     setPopupStatus(true);
   };
   const clickPopupYes = () => {
     let pointsDifference = 0;
 
-    setFinalPoints([
-      (currentPoints[0] + selectedPoints[0]) / 2,
-      (currentPoints[1] + selectedPoints[1]) / 2,
-    ]);
+    // Calc final points for zoom (between selected and current points)
+    dispatch(
+      setFinalPoints([
+        (currentPoints[0] + selectedPoints[0]) / 2,
+        (currentPoints[1] + selectedPoints[1]) / 2,
+      ]),
+    );
 
     const calcDifference = () => {
+      //Calc difference between selected and current coords
       let x: number = Math.abs(currentPoints[0]) - Math.abs(selectedPoints[0]);
       let y: number = Math.abs(currentPoints[1]) - Math.abs(selectedPoints[1]);
       return Math.abs(Math.abs(x) - Math.abs(y));
@@ -39,6 +46,7 @@ const Minimap = () => {
 
     pointsDifference = calcDifference();
 
+    //Changing the zoom depending on the distance to the desired point
     if (pointsDifference > 20) {
       setZoom(2);
     } else if (calcDifference() < 1.4) {
@@ -53,8 +61,6 @@ const Minimap = () => {
   };
 
   const clickPopupNo = () => {
-    console.log('no');
-
     setPopupStatus(false);
   };
 
