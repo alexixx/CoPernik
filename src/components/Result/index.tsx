@@ -17,7 +17,9 @@ const Result = () => {
   const [distance, setDistance] = useState(0);
 
   useEffect(() => {
-    setDistance(Number(calcDistance().toFixed(2)));
+    if (currentPoints) {
+      setDistance(Number(calcDistance().toFixed(2)));
+    }
   }, [finalPoints]);
   useEffect(() => {
     if (distance != 0) {
@@ -27,11 +29,16 @@ const Result = () => {
 
   const calcDistance = () => {
     // Calc distance between coords
-    return (
-      Math.sqrt(
-        (selectedPoints[0] - currentPoints[0]) ** 2 + (selectedPoints[1] - currentPoints[1]) ** 2,
-      ) * 100
-    );
+    if (currentPoints) {
+      return (
+        Math.sqrt(
+          (selectedPoints[0] - currentPoints[0]) ** 2 + (selectedPoints[1] - currentPoints[1]) ** 2,
+        ) * 100
+      );
+    } else {
+      alert('current points отсутствует при расчитывании дистанции');
+      return 0;
+    }
   };
 
   const calcResult = () => {

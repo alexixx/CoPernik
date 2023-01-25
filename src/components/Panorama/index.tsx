@@ -8,7 +8,7 @@ import { setCurrentPoints } from '../../redux/slices/pointsSlice';
 
 type CitiesCoords = string[][];
 
-const citiesNames = ['London', 'Moscow', 'Berlin'];
+const citiesNames = ['Vladimir', 'Moscow'];
 
 const BigPanorama = () => {
   const [citiesCoords, setCitiesCoords] = useState<CitiesCoords>();
@@ -36,7 +36,19 @@ const BigPanorama = () => {
       });
 
       if (data) {
-        result.push(data[0].boundingbox);
+        // console.log(data);
+        let polygon = [];
+        for (let i = 0; i < data[0].boundingbox.length; i++) {
+          polygon.push((data[0].boundingbox[i] - 0.025).toFixed(6));
+          // polygon.push(data[0].boundingbox)
+        }
+
+        console.log('data[0].boundingbox ', data[0].boundingbox);
+
+        console.log('polygon ', polygon);
+
+        result.push(polygon);
+        // console.log(result);
       }
     }
 
@@ -49,21 +61,21 @@ const BigPanorama = () => {
 
   const setPoints = () => {
     // Set coordinates of the selected panorama
-    console.log(citiesCoords);
+    // console.log(citiesCoords);
 
     if (citiesCoords) {
-      let indexCity = getRandomNumbers(0, 3, 0);
+      let indexCity = getRandomNumbers(0, 1, 0);
       dispatch(
         setCurrentPoints([
           getRandomNumbers(
             Number(citiesCoords[indexCity][0]),
             Number(citiesCoords[indexCity][1]),
-            2,
+            6,
           ),
           getRandomNumbers(
             Number(citiesCoords[indexCity][2]),
             Number(citiesCoords[indexCity][3]),
-            2,
+            6,
           ),
         ]),
       );
@@ -78,21 +90,30 @@ const BigPanorama = () => {
     return Number((Math.random() * (max - min) + min).toFixed(float));
   };
 
-  return (
-    <>
-      <div className="test">{currentPoints}</div>
-    </>
-    // <YMaps key="panorama" query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
-    //   <div className="panorama-main">
-    //     <Panorama
-    //       point={currentPoints}
-    //       options={{ controls: [''] }}
-    //       width={'100%'}
-    //       height={'100%'}
-    //     />
-    //   </div>
-    // </YMaps>
-  );
+  if (!currentPoints) {
+    return <div className="loading">LOADING</div>;
+  } else {
+    // console.log('currentPoints ', currentPoints);
+
+    return (
+      // <>
+      //   <div className="test">{currentPoints}</div>
+      // </>
+      <YMaps
+        key="panorama"
+        query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
+        <div className="panorama-main">
+          <Panorama
+            point={currentPoints}
+            options={{ controls: [''] }}
+            width={'100%'}
+            height={'100%'}
+          />
+        </div>
+        <div className="COORDS">{currentPoints}</div>
+      </YMaps>
+    );
+  }
 };
 
 export default BigPanorama;

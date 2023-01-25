@@ -29,33 +29,35 @@ const Minimap = () => {
   const clickPopupYes = () => {
     let pointsDifference = 0;
 
-    // Calc final points for zoom (between selected and current points)
-    dispatch(
-      setFinalPoints([
-        (currentPoints[0] + selectedPoints[0]) / 2,
-        (currentPoints[1] + selectedPoints[1]) / 2,
-      ]),
-    );
+    if (currentPoints) {
+      // Calc final points for zoom (between selected and current points)
+      dispatch(
+        setFinalPoints([
+          (currentPoints[0] + selectedPoints[0]) / 2,
+          (currentPoints[1] + selectedPoints[1]) / 2,
+        ]),
+      );
 
-    const calcDifference = () => {
-      //Calc difference between selected and current coords
-      let x: number = Math.abs(currentPoints[0]) - Math.abs(selectedPoints[0]);
-      let y: number = Math.abs(currentPoints[1]) - Math.abs(selectedPoints[1]);
-      return Math.abs(Math.abs(x) - Math.abs(y));
-    };
+      const calcDifference = () => {
+        //Calc difference between selected and current coords
+        let x: number = Math.abs(currentPoints[0]) - Math.abs(selectedPoints[0]);
+        let y: number = Math.abs(currentPoints[1]) - Math.abs(selectedPoints[1]);
+        return Math.abs(Math.abs(x) - Math.abs(y));
+      };
 
-    pointsDifference = calcDifference();
+      pointsDifference = calcDifference();
 
-    //Changing the zoom depending on the distance to the desired point
-    if (pointsDifference > 20) {
-      setZoom(2);
-    } else if (calcDifference() < 1.4) {
-      setZoom(8);
-    } else {
-      setZoom(4);
+      //Changing the zoom depending on the distance to the desired point
+      if (pointsDifference > 20) {
+        setZoom(2);
+      } else if (calcDifference() < 1.4) {
+        setZoom(8);
+      } else {
+        setZoom(4);
+      }
+
+      setPolyLine([currentPoints, selectedPoints]);
     }
-
-    setPolyLine([currentPoints, selectedPoints]);
 
     setPopupStatus(false);
   };
@@ -77,15 +79,17 @@ const Minimap = () => {
             width={350}
             height={220}
             onClick={(e: Event) => clickOnMiniMap(e)}>
-            <Polyline
-              geometry={polyLine}
-              options={{
-                balloonCloseButton: false,
-                strokeColor: '#ffe600',
-                strokeWidth: 4,
-                strokeOpacity: 0,
-              }}
-            />
+            {finalPoints && (
+              <Polyline
+                geometry={polyLine}
+                options={{
+                  balloonCloseButton: false,
+                  strokeColor: '#ffe600',
+                  strokeWidth: 4,
+                  strokeOpacity: 0,
+                }}
+              />
+            )}
           </Map>
         </div>
       </YMaps>

@@ -15,15 +15,15 @@ export type CartItemProps = {
 // INTERFACES
 
 interface CartSliceState {
-  currentCoords: number[];
+  currentCoords: number[] | null;
   selectedCoords: number[];
   finalCoords: number[] | null;
 }
 
 const initialState: CartSliceState = {
-  currentCoords: [0, 0],
+  currentCoords: null,
   selectedCoords: [0, 0],
-  finalCoords: [0, 0],
+  finalCoords: null,
 };
 
 const pointsSlice = createSlice({
