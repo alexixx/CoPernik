@@ -9,7 +9,6 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Singleplayer from './pages/Singleplayer';
 import Multiplayer from './pages/Multiplayer';
-import Game from './components/Game';
 
 function App() {
   return (
