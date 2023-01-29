@@ -5,18 +5,33 @@ import axios from 'axios';
 import { RootState } from '../../redux/store';
 
 import { setCurrentPoints } from '../../redux/slices/pointsSlice';
+import { setNextLevel } from '../../redux/slices/playerSlice';
 
 type CitiesCoords = string[][];
 
 const citiesNames = ['Vladimir', 'Moscow'];
 
 const BigPanorama = () => {
+  const dispatch = useDispatch();
+
   const [citiesCoords, setCitiesCoords] = useState<CitiesCoords>();
   const currentPoints = useSelector((state: RootState) => state.points.currentCoords);
-  const dispatch = useDispatch();
+  const currentLvl = useSelector((state: RootState) => state.player.level);
+
+  //Set next lvl
   useEffect(() => {
-    getCity();
+    console.log('Переход на первый уровень');
+
+    dispatch(setNextLevel());
   }, []);
+
+  useEffect(() => {
+    console.log('Произошло обновление уровня');
+    console.log('currentLvl: ', currentLvl);
+    if (currentLvl) {
+      getCity();
+    }
+  }, [currentLvl]);
 
   // After receiving the polygons, send them to the array
   useEffect(() => {
@@ -25,6 +40,9 @@ const BigPanorama = () => {
 
   const getCity = async () => {
     // Get all cities for game
+
+    console.log('Выполняется getCity');
+
     let result = [];
     for (let i = 0; i < citiesNames.length; i++) {
       const { data } = await axios.get('http://nominatim.openstreetmap.org/search', {
@@ -42,10 +60,6 @@ const BigPanorama = () => {
           polygon.push((data[0].boundingbox[i] - 0.025).toFixed(6));
           // polygon.push(data[0].boundingbox)
         }
-
-        console.log('data[0].boundingbox ', data[0].boundingbox);
-
-        console.log('polygon ', polygon);
 
         result.push(polygon);
         // console.log(result);

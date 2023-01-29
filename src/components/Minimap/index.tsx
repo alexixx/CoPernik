@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setSelectedPoints, setFinalPoints } from '../../redux/slices/pointsSlice';
 
-type DataPolyline = number[][];
+type DataPolyline = number[][] | null;
 
 const Minimap = () => {
   const dispatch = useDispatch();
@@ -12,14 +12,17 @@ const Minimap = () => {
   // const [finalPoints, setFinalPoints] = useState<any>();
   const [zoom, setZoom] = useState(1);
   const [popupStatus, setPopupStatus] = useState(false);
-  const [polyLine, setPolyLine] = useState<DataPolyline>([
-    [0, 0],
-    [0, 0],
-  ]);
+  const [polyLine, setPolyLine] = useState<DataPolyline>(null);
 
   const currentPoints = useSelector((state: RootState) => state.points.currentCoords);
   const selectedPoints = useSelector((state: RootState) => state.points.selectedCoords);
   const finalPoints = useSelector((state: RootState) => state.points.finalCoords);
+
+  useEffect(() => {
+    // Resetting the zoom and coords for polygon when starting a new level
+    setPolyLine(null);
+    setZoom(1);
+  }, [currentPoints]);
 
   const clickOnMiniMap = (e: any) => {
     // fixing the selected coordinates
@@ -73,13 +76,13 @@ const Minimap = () => {
           <Map
             state={
               finalPoints
-                ? { center: finalPoints, zoom: zoom }
+                ? { center: finalPoints, zoom: zoom, behaviors: [] }
                 : { center: [55.75, 37.57], zoom: 1 }
             }
             width={350}
             height={220}
             onClick={(e: Event) => clickOnMiniMap(e)}>
-            {finalPoints && (
+            {finalPoints && polyLine && (
               <Polyline
                 geometry={polyLine}
                 options={{

@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Panorama, YMaps } from 'react-yandex-maps';
 import { RootState } from '../../redux/store';
 
-import { addPoints } from '../../redux/slices/playerSlice';
+import { addPoints, setNextLevel } from '../../redux/slices/playerSlice';
+import { setFinalPoints, setSelectedPoints } from '../../redux/slices/pointsSlice';
 
 const Result = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Result = () => {
   const finalPoints = useSelector((state: RootState) => state.points.finalCoords);
 
   const score = useSelector((state: RootState) => state.player.score);
+  const level = useSelector((state: RootState) => state.player.level);
 
   const [distance, setDistance] = useState(0);
 
@@ -53,6 +55,13 @@ const Result = () => {
       // setResult(20);
     }
   };
+
+  const clickNextLevel = () => {
+    //Reset coordinates
+    dispatch(setNextLevel());
+    dispatch(setFinalPoints(null));
+    dispatch(setSelectedPoints([0, 0]));
+  };
   return (
     <>
       {finalPoints && (
@@ -62,13 +71,16 @@ const Result = () => {
           <div className="modal-window__description">
             <div className="">Расстояние до точки {distance} км</div>
             <div className="">Общий счет игры {score}</div>
+            <div className="">Текущий уровень: {level}</div>
           </div>
           <div className="modal-window__progressbar">
             <div className="bar"></div>
             <div className="numbers"></div>
           </div>
           <div className="modal-window__buttons">
-            <div className="btn btn--ok"></div>
+            <div className="btn btn--ok" onClick={() => clickNextLevel()}>
+              Cледующий уровень
+            </div>
             <div className="btn btn--cancel"></div>
           </div>
         </div>

@@ -28,13 +28,13 @@ const filterSlice = createSlice({
     addPoints(state, action: PayloadAction<number>) {
       state.score += action.payload;
     },
-    nextLevel(state) {
+    setNextLevel(state) {
       state.level++;
     },
   },
 });
 
 //filterSlice.actions == filterSlice.reducers
-export const { addPoints } = filterSlice.actions;
+export const { addPoints, setNextLevel } = filterSlice.actions;
 
 export default filterSlice.reducer;
