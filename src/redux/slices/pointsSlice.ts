@@ -30,7 +30,7 @@ const pointsSlice = createSlice({
   name: 'points',
   initialState,
   reducers: {
-    setCurrentPoints(state, action: PayloadAction<number[]>) {
+    setCurrentPoints(state, action: PayloadAction<number[] | null>) {
       state.currentCoords = action.payload;
     },
     setSelectedPoints(state, action: PayloadAction<number[]>) {

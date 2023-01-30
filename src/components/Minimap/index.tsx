@@ -5,6 +5,7 @@ import { RootState } from '../../redux/store';
 import { setSelectedPoints, setFinalPoints } from '../../redux/slices/pointsSlice';
 
 type DataPolyline = number[][] | null;
+type localSelectedPoints = number[];
 
 const Minimap = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Minimap = () => {
   const [zoom, setZoom] = useState(1);
   const [popupStatus, setPopupStatus] = useState(false);
   const [polyLine, setPolyLine] = useState<DataPolyline>(null);
+  const [localSelectedPoints, setLocalSelectedPoints] = useState<localSelectedPoints>();
 
   const currentPoints = useSelector((state: RootState) => state.points.currentCoords);
   const selectedPoints = useSelector((state: RootState) => state.points.selectedCoords);
@@ -26,14 +28,18 @@ const Minimap = () => {
 
   const clickOnMiniMap = (e: any) => {
     // fixing the selected coordinates
-    dispatch(setSelectedPoints(e.get('coords')));
+
+    setLocalSelectedPoints(e.get('coords'));
     setPopupStatus(true);
   };
   const clickPopupYes = () => {
     let pointsDifference = 0;
 
-    if (currentPoints) {
+    if (currentPoints && localSelectedPoints) {
       // Calc final points for zoom (between selected and current points)
+
+      dispatch(setSelectedPoints(localSelectedPoints));
+
       dispatch(
         setFinalPoints([
           (currentPoints[0] + selectedPoints[0]) / 2,

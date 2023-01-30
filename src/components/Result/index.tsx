@@ -4,7 +4,11 @@ import { Panorama, YMaps } from 'react-yandex-maps';
 import { RootState } from '../../redux/store';
 
 import { addPoints, setNextLevel } from '../../redux/slices/playerSlice';
-import { setFinalPoints, setSelectedPoints } from '../../redux/slices/pointsSlice';
+import {
+  setCurrentPoints,
+  setFinalPoints,
+  setSelectedPoints,
+} from '../../redux/slices/pointsSlice';
 
 const Result = () => {
   const dispatch = useDispatch();
@@ -57,10 +61,13 @@ const Result = () => {
   };
 
   const clickNextLevel = () => {
-    //Reset coordinates
+    //Reset coordinates and switch lvl
+
     dispatch(setNextLevel());
-    dispatch(setFinalPoints(null));
+
+    dispatch(setCurrentPoints(null));
     dispatch(setSelectedPoints([0, 0]));
+    dispatch(setFinalPoints(null));
   };
   return (
     <>

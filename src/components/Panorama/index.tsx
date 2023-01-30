@@ -6,15 +6,14 @@ import { RootState } from '../../redux/store';
 
 import { setCurrentPoints } from '../../redux/slices/pointsSlice';
 import { setNextLevel } from '../../redux/slices/playerSlice';
-
-type CitiesCoords = string[][];
-
-const citiesNames = ['Vladimir', 'Moscow'];
+import { fetchCities } from '../../redux/slices/citiesSlice';
 
 const BigPanorama = () => {
   const dispatch = useDispatch();
 
-  const [citiesCoords, setCitiesCoords] = useState<CitiesCoords>();
+  const citiesCoords = useSelector((state: RootState) => state.cities.citiesCoords);
+  const status = useSelector((state: RootState) => state.cities.status);
+
   const currentPoints = useSelector((state: RootState) => state.points.currentCoords);
   const currentLvl = useSelector((state: RootState) => state.player.level);
 
@@ -35,7 +34,13 @@ const BigPanorama = () => {
 
   // After receiving the polygons, send them to the array
   useEffect(() => {
-    setPoints();
+    console.log(citiesCoords);
+
+    if (status == 'success') {
+      console.log('Запрос выполнен выполняется вызов функции setPoints');
+
+      setPoints();
+    }
   }, [citiesCoords]);
 
   const getCity = async () => {
@@ -43,42 +48,22 @@ const BigPanorama = () => {
 
     console.log('Выполняется getCity');
 
-    let result = [];
-    for (let i = 0; i < citiesNames.length; i++) {
-      const { data } = await axios.get('http://nominatim.openstreetmap.org/search', {
-        params: {
-          q: citiesNames[i],
-          format: 'json',
-          polygon_geojson: 1,
-        },
-      });
-
-      if (data) {
-        // console.log(data);
-        let polygon = [];
-        for (let i = 0; i < data[0].boundingbox.length; i++) {
-          polygon.push((data[0].boundingbox[i] - 0.025).toFixed(6));
-          // polygon.push(data[0].boundingbox)
-        }
-
-        result.push(polygon);
-        // console.log(result);
-      }
+    try {
+      // @ts-ignore
+      dispatch(fetchCities());
+    } catch (error) {
+      console.log('error');
     }
-
-    if (result) {
-      setCitiesCoords(result);
-    }
-
-    //@ts-ignore
   };
 
   const setPoints = () => {
     // Set coordinates of the selected panorama
-    // console.log(citiesCoords);
+    console.log('Выполняется setPoints');
 
+    console.log('🚀 ~ file: index.tsx:65 ~ setPoints ~ citiesCoords', citiesCoords);
     if (citiesCoords) {
-      let indexCity = getRandomNumbers(0, 1, 0);
+      // let indexCity = getRandomNumbers(0, 1, 0);
+      let indexCity = 0;
       dispatch(
         setCurrentPoints([
           getRandomNumbers(
@@ -104,10 +89,18 @@ const BigPanorama = () => {
     return Number((Math.random() * (max - min) + min).toFixed(float));
   };
 
+  const loadPanorama = (e: any) => {
+    console.log('PANORAMA ONLOAD!!', e.ready());
+  };
+
   if (!currentPoints) {
+    console.log('Координаты для инициализации панорамы еще не получены');
+
     return <div className="loading">LOADING</div>;
   } else {
     // console.log('currentPoints ', currentPoints);
+
+    console.log('Производится рендер компонента панорамы');
 
     return (
       // <>
@@ -122,9 +115,9 @@ const BigPanorama = () => {
             options={{ controls: [''] }}
             width={'100%'}
             height={'100%'}
+            onLoad={(e) => loadPanorama(e)}
           />
         </div>
-        <div className="COORDS">{currentPoints}</div>
       </YMaps>
     );
   }
