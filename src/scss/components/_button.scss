@@ -1,4 +1,23 @@
 @import '../variables.scss';
 
-.button {
+button {
+  cursor: pointer;
+  box-shadow: $shadow-morph-6px-outset;
+  background: $background;
+  color: $label-grey;
+  padding: 15px 40px;
+  border-radius: 24px;
+  transition: 0.2s;
+  &.circle {
+    padding: 10px;
+    border-radius: 50%;
+  }
+  &:hover {
+    box-shadow: $shadow-morph-6px-outset, $shadow-morph-6px-inset;
+    transition: 0.2s;
+  }
+  &:active {
+    box-shadow: inset 6px 6px 12px $dark-shadow, inset -6px -6px 12px $light-shadow;
+    transition: 0.2s;
+  }
 }

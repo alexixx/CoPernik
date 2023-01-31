@@ -10,12 +10,15 @@ type PackageItem = {
 export const Menu: FC = () => {
   return (
     <>
-      <div className="menu__list menu--main">
-        <Link to="/singleplayer" className="menu__item">
+      <div className="modal modal--main">
+        <Link to="/singleplayer" className="modal__title modal__title--home">
           Singleplayer
         </Link>
-        <Link to="/multiplayer" className="menu__item">
+        <Link to="/multiplayer" className="modal__title modal__title--home">
           Multiplayer
+        </Link>
+        <Link to="/settings" className="modal__title modal__title--home">
+          Settings
         </Link>
       </div>
     </>

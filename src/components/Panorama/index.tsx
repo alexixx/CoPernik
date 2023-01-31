@@ -90,7 +90,7 @@ const BigPanorama = () => {
   };
 
   const loadPanorama = (e: any) => {
-    console.log('PANORAMA ONLOAD!!', e.ready());
+    console.log('PANORAMA ONLOAD!!', e.ready()._status);
   };
 
   if (!currentPoints) {
@@ -103,22 +103,22 @@ const BigPanorama = () => {
     console.log('Производится рендер компонента панорамы');
 
     return (
-      // <>
-      //   <div className="test">{currentPoints}</div>
-      // </>
-      <YMaps
-        key="panorama"
-        query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
-        <div className="panorama-main">
-          <Panorama
-            point={currentPoints}
-            options={{ controls: [''] }}
-            width={'100%'}
-            height={'100%'}
-            onLoad={(e) => loadPanorama(e)}
-          />
-        </div>
-      </YMaps>
+      <>
+        <div className="test">{currentPoints}</div>
+      </>
+      // <YMaps
+      //   key="panorama"
+      //   query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
+      //   <div className="panorama-main">
+      //     <Panorama
+      //       point={currentPoints}
+      //       options={{ controls: [''] }}
+      //       width={'100%'}
+      //       height={'100%'}
+      //       onLoad={(e) => {}}
+      //     />
+      //   </div>
+      // </YMaps>
     );
   }
 };

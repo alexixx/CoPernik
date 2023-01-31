@@ -11,7 +11,22 @@ type PackageItem = {
 export const Home: FC = () => {
   return (
     <>
-      <Menu />
+      <div className="home">
+        <div className="home__column">
+          <div className="title">COPERNIK</div>
+        </div>
+        <div className="home__column">
+          <Menu />
+        </div>
+        <div className="home__column">
+          <img src="img/COPERNIK.png" alt="Kopernik" className="kopernik-img" />
+        </div>
+      </div>
+      <div className="copyright">
+        <a href="https://github.com/alexixx" target="_blank">
+          by Alexixx
+        </a>
+      </div>
     </>
   );
 };

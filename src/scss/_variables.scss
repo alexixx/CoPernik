@@ -1,9 +1,18 @@
-$black: #232323;
-$background: #232323;
-$gray-line: #f6f6f6;
-$white: rgb(222, 222, 222);
-$green: #06c837;
+//COLORS
+$background: #24272c;
+$light-shadow: rgba(255, 255, 255, 0.05);
+$dark-shadow: rgba(0, 0, 0, 0.25);
+$label-grey: #7f8493;
 
+$gradient-color1: #2fb8ff;
+$gradient-color2: #9eecd9;
+
+//SIZES
 $container-width: 90%;
 
+//TRANSITIONS
 $duration: 0.15s;
+
+//SHADOWS
+$shadow-morph-6px-outset: 6px 6px 12px $dark-shadow, -6px -6px 12px $light-shadow;
+$shadow-morph-6px-inset: inset 6px 6px 12px $dark-shadow, inset -6px -6px 12px $light-shadow;

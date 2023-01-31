@@ -34,7 +34,7 @@ export const fetchCities = createAsyncThunk('pizzas/fetchPizzasStatus', async (p
         let polygon = [];
         for (let i = 0; i < data[0].boundingbox.length; i++) {
           // Increasing the probability of finding a panorama by reducing the size of the polygon
-          polygon.push((data[0].boundingbox[i] - 0.025).toFixed(6));
+          polygon.push((data[0].boundingbox[i] - 0.045).toFixed(6));
           // polygon.push(data[0].boundingbox)
         }
 

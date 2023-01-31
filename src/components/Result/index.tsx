@@ -72,23 +72,26 @@ const Result = () => {
   return (
     <>
       {finalPoints && (
-        <div className="modal-window">
-          <div className="modal-window__title"></div>
-          <div className="modal-window__subtitle"></div>
-          <div className="modal-window__description">
-            <div className="">Расстояние до точки {distance} км</div>
-            <div className="">Общий счет игры {score}</div>
-            <div className="">Текущий уровень: {level}</div>
+        <div className="modal modal--result">
+          <div className="modal__title">Your result</div>
+
+          <div className="modal__description">
+            <p className="">Distance to the point {distance} km</p>
+            {/* <p className=""></p> */}
+            <p className="">{level} lvl</p>
           </div>
-          <div className="modal-window__progressbar">
-            <div className="bar"></div>
-            <div className="numbers"></div>
-          </div>
-          <div className="modal-window__buttons">
-            <div className="btn btn--ok" onClick={() => clickNextLevel()}>
-              Cледующий уровень
+          <div className="score">
+            <div className="modal__subtitle">Score {score}</div>
+            <div className="progressbar">
+              <div className="bar"></div>
+              <div className="numbers"></div>
             </div>
-            <div className="btn btn--cancel"></div>
+          </div>
+
+          <div className="modal__buttons">
+            <button className="ok" onClick={() => clickNextLevel()}>
+              Next level
+            </button>
           </div>
         </div>
       )}

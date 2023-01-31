@@ -1,0 +1,112 @@
+.modal {
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $background;
+  border-radius: 25px;
+  box-shadow: $shadow-morph-6px-outset;
+  padding: 5%;
+  animation: 0.3s bounce-in ease-in-out forwards;
+  & p {
+    color: #fff;
+  }
+
+  &__title {
+    color: #fff;
+    font-size: 40px;
+    margin-bottom: 15px;
+    &--home {
+      font-size: 35px;
+      transition: 0.3;
+      &:hover {
+        text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.6);
+        transition: 0.3;
+      }
+    }
+  }
+  &__subtitle {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  &__glass {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    filter: blur();
+    opacity: 0.5;
+  }
+
+  &__buttons {
+    margin-top: 60px;
+  }
+  &--main {
+    height: 70%;
+  }
+  &--mini-map {
+    position: absolute;
+    top: 13%;
+    left: 15%;
+    width: 70%;
+    height: 75%;
+    & .btn-wrapper {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      //   margin-top: 30px;
+      button {
+        margin-right: 40px;
+        padding: 10%;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  &--result {
+    position: absolute;
+    top: 13%;
+    left: 15%;
+    width: 25%;
+    height: 50%;
+    & .score {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    & .progressbar {
+      position: relative;
+      width: 350px;
+      height: 10px;
+      border-radius: 4px;
+      background-color: $label-grey;
+      overflow: hidden;
+      & .bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #40f3c6;
+      }
+      & .numbers {
+      }
+    }
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.7);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

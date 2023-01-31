@@ -76,7 +76,7 @@ const Minimap = () => {
   };
 
   return (
-    <div className="map map--mini">
+    <div className="mini-map">
       <YMaps key="mini-map">
         <div>
           <Map
@@ -104,11 +104,11 @@ const Minimap = () => {
       </YMaps>
 
       {popupStatus ? (
-        <div className="popup popup--mini">
-          <div className="popup__question">Отметить эту точку?</div>
-          <div className="popup__btn-wrapper">
-            <button onClick={() => clickPopupYes()}>Да</button>
-            <button onClick={() => clickPopupNo()}>Нет</button>
+        <div className="modal modal--mini-map">
+          <div className="modal__subtitle">Сhoose this point?</div>
+          <div className="btn-wrapper">
+            <button onClick={() => clickPopupYes()}>Yes</button>
+            <button onClick={() => clickPopupNo()}>Hmm...</button>
           </div>
         </div>
       ) : (
