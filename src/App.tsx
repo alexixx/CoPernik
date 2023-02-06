@@ -12,18 +12,14 @@ import Multiplayer from './pages/Multiplayer';
 
 function App() {
   return (
-    <div className="wrapper">
-      {/* <Header /> */}
+    <div className="container">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/singleplayer" element={<Singleplayer />} />
+        <Route path="/multiplayer" element={<Multiplayer />} />
 
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/singleplayer" element={<Singleplayer />} />
-          <Route path="/multiplayer" element={<Multiplayer />} />
-
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
