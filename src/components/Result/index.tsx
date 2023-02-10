@@ -9,6 +9,7 @@ import {
   setFinalPoints,
   setSelectedPoints,
 } from '../../redux/slices/pointsSlice';
+import { log } from 'console';
 
 const Result = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,10 @@ const Result = () => {
       // setResult(20);
     }
   };
+  const calcScorePercent = () => {
+    console.log(score);
+    return score;
+  };
 
   const clickNextLevel = () => {
     //Reset coordinates and switch lvl
@@ -97,6 +102,35 @@ const Result = () => {
       )}
     </>
   );
+
+  // return (
+  //   <>
+  //     {
+  //       <div className="modal modal--result">
+  //         <div className="modal__title">Your result</div>
+
+  //         <div className="modal__description">
+  //           <p className="">Distance to the point {distance} km</p>
+  //           {/* <p className=""></p> */}
+  //           <p className="">{level} lvl</p>
+  //         </div>
+  //         <div className="score">
+  //           <div className="modal__subtitle">Score {score}</div>
+  //           <div className="progressbar">
+  //             <div className="bar" style={{ width: `${score}%` }}></div>
+  //             <div className="numbers"></div>
+  //           </div>
+  //         </div>
+
+  //         <div className="modal__buttons">
+  //           <button className="ok" onClick={() => clickNextLevel()}>
+  //             Next level
+  //           </button>
+  //         </div>
+  //       </div>
+  //     }
+  //   </>
+  // );
 };
 
 export default Result;

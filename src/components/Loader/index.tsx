@@ -1,25 +1,20 @@
 import { FC } from 'react';
 import ContentLoader from 'react-content-loader';
 
-import SimpleRow from './SimpleRow';
-import Box from './Box';
+import Main from './Main';
 
-type SkeletonProps = {
-  key: number;
+type LoaderProps = {
   name: string;
 };
 
-const Skeleton: FC<SkeletonProps> = (data) => {
+const Loader: FC<LoaderProps> = (data) => {
   switch (data.name) {
-    case 'simple-row':
-      return <SimpleRow key={data.key} />;
-      break;
-    case 'box':
-      return <Box />;
+    case 'main':
+      return <Main />;
       break;
 
     default:
-      return <SimpleRow key={data.key} />;
+      return <Main />;
       break;
   }
 
@@ -44,4 +39,4 @@ const Skeleton: FC<SkeletonProps> = (data) => {
   // );
 };
 
-export default Skeleton;
+export default Loader;

@@ -5,6 +5,7 @@ import Skeleton from '../components/Skeleton';
 import Panorama from '../components/Panorama';
 import Minimap from '../components/Minimap';
 import Result from '../components/Result';
+import Info from '../components/Info';
 import { RootState } from '../redux/store';
 // import ymaps from 'ymaps';
 
@@ -19,6 +20,7 @@ export const Singleplayer: FC = () => {
     <>
       <Panorama />
       <Minimap />
+      <Info />
       <Result />
     </>
   );

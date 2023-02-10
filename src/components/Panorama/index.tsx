@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Panorama, YMaps } from 'react-yandex-maps';
 import axios from 'axios';
 import { RootState } from '../../redux/store';
+import Loader from '../Loader';
 
 import { setCurrentPoints } from '../../redux/slices/pointsSlice';
 import { setNextLevel } from '../../redux/slices/playerSlice';
@@ -96,29 +97,29 @@ const BigPanorama = () => {
   if (!currentPoints) {
     console.log('Координаты для инициализации панорамы еще не получены');
 
-    return <div className="loading">LOADING</div>;
+    return <Loader name="main" />;
   } else {
     // console.log('currentPoints ', currentPoints);
 
     console.log('Производится рендер компонента панорамы');
 
     return (
-      <>
-        <div className="test">{currentPoints}</div>
-      </>
-      // <YMaps
-      //   key="panorama"
-      //   query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
-      //   <div className="panorama-main">
-      //     <Panorama
-      //       point={currentPoints}
-      //       options={{ controls: [''] }}
-      //       width={'100%'}
-      //       height={'100%'}
-      //       onLoad={(e) => {}}
-      //     />
-      //   </div>
-      // </YMaps>
+      // <>
+      //   <div className="test">{currentPoints}</div>
+      // </>
+      <YMaps
+        key="panorama"
+        query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
+        <div className="panorama-main">
+          <Panorama
+            point={currentPoints}
+            options={{ controls: [''] }}
+            width={'100%'}
+            height={'100%'}
+            // onLoad={(e) => {}}
+          />
+        </div>
+      </YMaps>
     );
   }
 };

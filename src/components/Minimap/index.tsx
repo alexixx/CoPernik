@@ -77,30 +77,29 @@ const Minimap = () => {
 
   return (
     <div className="mini-map">
+      {/* <div className="placeholder-map"> </div> */}
       <YMaps key="mini-map">
-        <div>
-          <Map
-            state={
-              finalPoints
-                ? { center: finalPoints, zoom: zoom, behaviors: [] }
-                : { center: [55.75, 37.57], zoom: 1 }
-            }
-            width={350}
-            height={220}
-            onClick={(e: Event) => clickOnMiniMap(e)}>
-            {finalPoints && polyLine && (
-              <Polyline
-                geometry={polyLine}
-                options={{
-                  balloonCloseButton: false,
-                  strokeColor: '#ffe600',
-                  strokeWidth: 4,
-                  strokeOpacity: 0,
-                }}
-              />
-            )}
-          </Map>
-        </div>
+        <Map
+          state={
+            finalPoints
+              ? { center: finalPoints, zoom: zoom, behaviors: [] }
+              : { center: [55.75, 37.57], zoom: 1 }
+          }
+          width={'100%'}
+          height={'100%'}
+          onClick={(e: Event) => clickOnMiniMap(e)}>
+          {finalPoints && polyLine && (
+            <Polyline
+              geometry={polyLine}
+              options={{
+                balloonCloseButton: false,
+                strokeColor: '#ffe600',
+                strokeWidth: 4,
+                strokeOpacity: 0,
+              }}
+            />
+          )}
+        </Map>
       </YMaps>
 
       {popupStatus ? (
