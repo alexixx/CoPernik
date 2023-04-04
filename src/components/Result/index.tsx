@@ -9,7 +9,6 @@ import {
   setFinalPoints,
   setSelectedPoints,
 } from '../../redux/slices/pointsSlice';
-import { log } from 'console';
 
 const Result = () => {
   const dispatch = useDispatch();
@@ -49,10 +48,12 @@ const Result = () => {
   };
 
   const calcResult = () => {
-    if (distance < 30) {
+    console.log(distance);
+
+    if (distance < 4) {
       dispatch(addPoints(100));
       //   setResult(100);
-    } else if (distance > 200) {
+    } else if (distance > 50) {
       dispatch(addPoints(5));
       //   setResult(5);
     } else {
@@ -61,7 +62,6 @@ const Result = () => {
     }
   };
   const calcScorePercent = () => {
-    console.log(score);
     return score;
   };
 
@@ -83,21 +83,29 @@ const Result = () => {
           <div className="modal__description">
             <p className="">Distance to the point {distance} km</p>
             {/* <p className=""></p> */}
-            <p className="">{level} lvl</p>
+            {/* <p className="">{level} lvl</p> */}
           </div>
           <div className="score">
             <div className="modal__subtitle">Score {score}</div>
             <div className="progressbar">
-              <div className="bar"></div>
+              <div className="bar" style={{ width: `${score}%` }}></div>
               <div className="numbers"></div>
             </div>
           </div>
-
-          <div className="modal__buttons">
-            <button className="ok" onClick={() => clickNextLevel()}>
-              Next level
-            </button>
-          </div>
+          {level >= 5 ? (
+            <>
+              <div className="result">Конец игры</div>
+              <div className="modal__buttons">
+                <button className="ok">Start again?</button>
+              </div>
+            </>
+          ) : (
+            <div className="modal__buttons">
+              <button className="ok" onClick={() => clickNextLevel()}>
+                Next level
+              </button>
+            </div>
+          )}
         </div>
       )}
     </>

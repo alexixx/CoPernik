@@ -81,6 +81,7 @@ body {
 
   border-radius: 25px;
   overflow: hidden;
+  transition: 0.3s;
 }
 .kopernik-img {
   width: 70%;
@@ -88,14 +89,26 @@ body {
 }
 
 .copyright {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  width: 100%;
-  margin-top: 5%;
+  &--main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    margin-top: 5%;
+  }
+  &--sidebar {
+    position: absolute;
+    bottom: 30px;
+  }
+
   a {
     color: $label-grey;
+    transition: 0.2s;
+    &:hover {
+      color: #b6bdd2;
+      transition: 0.2s;
+    }
   }
 }
 

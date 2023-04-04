@@ -14,11 +14,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface FilterSliceState {
   score: number;
   level: 0;
+  polyline: number[][] | null;
 }
 
 const initialState: FilterSliceState = {
   score: 0,
   level: 0,
+  polyline: null,
 };
 
 const filterSlice = createSlice({
@@ -31,10 +33,13 @@ const filterSlice = createSlice({
     setNextLevel(state) {
       state.level++;
     },
+    setPolyline(state, action) {
+      state.polyline = action.payload;
+    },
   },
 });
 
 //filterSlice.actions == filterSlice.reducers
-export const { addPoints, setNextLevel } = filterSlice.actions;
+export const { addPoints, setNextLevel, setPolyline } = filterSlice.actions;
 
 export default filterSlice.reducer;

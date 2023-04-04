@@ -1,0 +1,64 @@
+.sidebar {
+  position: absolute;
+
+  left: 0;
+  top: 80px;
+  height: 25%;
+  padding: 10px 0px;
+  background-color: #24272cc6;
+  // border: 8px solid $gradient-color1;
+  // border-left: none;
+  box-shadow: 9px 0px 0px 0px $gradient-color1;
+  // backface-visibility: hidden;
+  transition: 0.2s;
+
+  &.active {
+    height: 25%;
+    width: auto;
+    padding: 10px 20px;
+    border-radius: 0 10px 10px 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  &__item {
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+    transition: 0.2s;
+    &:hover {
+      text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.6);
+      transition: 0.2s;
+    }
+  }
+}
+.profile {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  & .name {
+    font-size: 20px;
+    color: white;
+  }
+  & .avatar {
+    background: linear-gradient(180deg, $label-grey, transparent);
+    opacity: 0.3;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: auto auto;
+    margin-right: 15px;
+  }
+}
+
+// TEST
+.btn-show-test {
+  cursor: pointer;
+  color: $label-grey;
+  opacity: 1 !important;
+  font-size: 22px;
+}

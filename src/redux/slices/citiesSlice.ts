@@ -15,7 +15,7 @@ interface CitiesSliceState {
 // const citiesNames = ['Vladimir', 'Moscow'];
 const citiesNames = ['Moscow', 'Vladimir'];
 
-export const fetchCities = createAsyncThunk('pizzas/fetchPizzasStatus', async (params) => {
+export const fetchCities = createAsyncThunk('cities/fetchCities', async (params) => {
   // Возможно использовать ThunkAPI для более расширенной работы с запросом
   let finalData = [];
   const getPolygons = async () => {
@@ -35,6 +35,7 @@ export const fetchCities = createAsyncThunk('pizzas/fetchPizzasStatus', async (p
         for (let i = 0; i < data[0].boundingbox.length; i++) {
           // Increasing the probability of finding a panorama by reducing the size of the polygon
           polygon.push((data[0].boundingbox[i] - 0.045).toFixed(6));
+          // polygon.push((data[0].boundingbox[i] - 0.15).toFixed(6));
           // polygon.push(data[0].boundingbox)
         }
 

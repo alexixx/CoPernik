@@ -14,9 +14,9 @@ export const Menu: FC = () => {
         <Link to="/singleplayer" className="modal__title modal__title--home">
           Singleplayer
         </Link>
-        <Link to="/multiplayer" className="modal__title modal__title--home">
+        {/* <Link to="/multiplayer" className="modal__title modal__title--home">
           Multiplayer
-        </Link>
+        </Link> */}
         <Link to="/settings" className="modal__title modal__title--home">
           Settings
         </Link>

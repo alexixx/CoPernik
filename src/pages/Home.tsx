@@ -22,7 +22,7 @@ export const Home: FC = () => {
           <div className="title">COPERNIK</div>
         </div>
       </div>
-      <div className="copyright">
+      <div className="copyright copyright--main">
         <a href="https://github.com/alexixx" target="_blank">
           by Alexixx
         </a>

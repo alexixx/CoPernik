@@ -90,8 +90,40 @@ const BigPanorama = () => {
     return Number((Math.random() * (max - min) + min).toFixed(float));
   };
 
-  const loadPanorama = (e: any) => {
-    console.log('PANORAMA ONLOAD!!', e.ready()._status);
+  const onDirectionChange = () => {
+    console.log('Изменились координаты панорамы');
+  };
+  const onPanoramaError = (e: any) => {
+    console.log(e);
+    console.log('!!!Error was found');
+  };
+  const onPanoramaChange = () => {
+    console.log('!!Coords of panorama is changed');
+
+    setTimeout(() => {
+      let panoramaDOM = document.querySelectorAll('.panorama-main *');
+      if (panoramaDOM.length <= 1) {
+        // dispatch(setCurrentPoints([55.658412, 37.788544]));
+        setPoints();
+      }
+      console.log(panoramaDOM);
+    }, 2000);
+  };
+  const onPanoramaLoad = (e: any) => {
+    // if (!e.panorama.isSupported()) {
+    //   console.log('Not supported!');
+    //   return;
+    // } else {
+    //   console.log('Supported!');
+    // }
+    // console.log('!!!Panorama is loaded');
+    // setTimeout(() => {
+    //   let panoramaDOM = document.querySelectorAll('.panorama-main *');
+    //   if (panoramaDOM.length <= 1) {
+    //     setPoints();
+    //   }
+    //   console.log(panoramaDOM);
+    // }, 2000);
   };
 
   if (!currentPoints) {
@@ -108,15 +140,21 @@ const BigPanorama = () => {
       //   <div className="test">{currentPoints}</div>
       // </>
       <YMaps
-        key="panorama"
-        query={{ lang: 'en_RU', apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2' }}>
+        key={`panorama-${currentPoints}`}
+        query={{
+          lang: 'en_RU',
+          apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2',
+          load: 'package.full',
+        }}>
         <div className="panorama-main">
           <Panorama
             point={currentPoints}
             options={{ controls: [''] }}
             width={'100%'}
             height={'100%'}
-            // onLoad={(e) => {}}
+            onLoad={(e) => onPanoramaLoad(e)}
+            onPanoramaChange={onPanoramaChange()}
+            // onDirectionChange={() => onDirectionChange()}
           />
         </div>
       </YMaps>
