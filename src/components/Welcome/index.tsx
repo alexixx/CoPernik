@@ -47,11 +47,11 @@ const Welcome = () => {
                   onClick={() => onClickSetCity('Moscow')}>
                   Msocow
                 </button>
-                <button
+                {/* <button
                   className={city == 'Vladimir' ? 'settings__item active' : 'settings__item'}
                   onClick={() => onClickSetCity('Vladimir')}>
                   Vladimir
-                </button>
+                </button> */}
                 <button
                   className={
                     city == 'Saint-Petersburg' ? 'settings__item active' : 'settings__item'
@@ -99,7 +99,14 @@ const Welcome = () => {
               </Link>
             </div>
           ) : (
-            <p className="attention">Choose a difficulty level and a city to start</p>
+            <>
+              <p className="attention">Choose a difficulty level and a city to start</p>
+              <div className="btn-wrapper">
+                <Link to="/">
+                  <button>Exit</button>
+                </Link>
+              </div>
+            </>
           )}
         </div>
       </div>

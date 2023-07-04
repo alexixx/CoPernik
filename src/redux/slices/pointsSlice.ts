@@ -16,13 +16,13 @@ export type CartItemProps = {
 
 interface CartSliceState {
   currentCoords: number[] | null;
-  selectedCoords: number[]; // !
+  selectedCoords: number[] | null; // !
   finalCoords: number[] | null;
 }
 
 const initialState: CartSliceState = {
   currentCoords: null,
-  selectedCoords: [0, 0],
+  selectedCoords: null,
   finalCoords: null,
 };
 
@@ -33,7 +33,7 @@ const pointsSlice = createSlice({
     setCurrentPoints(state, action: PayloadAction<number[] | null>) {
       state.currentCoords = action.payload;
     },
-    setSelectedPoints(state, action: PayloadAction<number[]>) {
+    setSelectedPoints(state, action: PayloadAction<number[] | null>) {
       state.selectedCoords = action.payload;
     },
     setFinalPoints(state, action: PayloadAction<number[] | null>) {

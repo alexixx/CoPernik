@@ -18,6 +18,13 @@ const BigPanorama = () => {
   const currentPoints = useSelector((state: RootState) => state.points.currentCoords);
   const currentLvl = useSelector((state: RootState) => state.player.level);
 
+  const [loaderPanorama, setLoaderPanorama] = useState(true);
+
+  //   useEffect(() => {
+  //     first
+
+  //   }, [currentPoints])
+
   //Set next lvl
   useEffect(() => {
     console.log('Переход на первый уровень');
@@ -139,25 +146,28 @@ const BigPanorama = () => {
       // <>
       //   <div className="test">{currentPoints}</div>
       // </>
-      <YMaps
-        key={`panorama-${currentPoints}`}
-        query={{
-          lang: 'en_RU',
-          apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2',
-          load: 'package.full',
-        }}>
-        <div className="panorama-main">
-          <Panorama
-            point={currentPoints}
-            options={{ controls: [''] }}
-            width={'100%'}
-            height={'100%'}
-            onLoad={(e) => onPanoramaLoad(e)}
-            onPanoramaChange={onPanoramaChange()}
-            // onDirectionChange={() => onDirectionChange()}
-          />
-        </div>
-      </YMaps>
+      <>
+        <YMaps
+          key={`panorama-${currentPoints}`}
+          query={{
+            lang: 'en_RU',
+            apikey: 'c2b47d53-207f-4593-9c59-b6e18207f6c2',
+            load: 'package.full',
+          }}>
+          <div className="panorama-main">
+            <Panorama
+              point={currentPoints}
+              options={{ controls: [''] }}
+              width={'100%'}
+              height={'100%'}
+              onLoad={(e) => onPanoramaLoad(e)}
+              onPanoramaChange={onPanoramaChange()}
+              // onDirectionChange={() => onDirectionChange()}
+            />
+          </div>
+        </YMaps>
+        <Loader name="main" />
+      </>
     );
   }
 };

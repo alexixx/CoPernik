@@ -1,28 +1,18 @@
 .sidebar {
+  z-index: 3;
   position: absolute;
 
   left: 0;
   top: 80px;
-  height: 25%;
-  padding: 10px 0px;
-  background-color: #24272cc6;
-  // border: 8px solid $gradient-color1;
-  // border-left: none;
-  box-shadow: 9px 0px 0px 0px $gradient-color1;
-  // backface-visibility: hidden;
-  transition: 0.2s;
 
-  &.active {
-    height: 25%;
-    width: auto;
-    padding: 10px 20px;
-    border-radius: 0 10px 10px 0;
-  }
+  padding: 10px 20px;
+  background-color: $background;
+  border-radius: 0 10px 10px 0;
+  transition: 0.2s;
 
   &__list {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
   }
   &__item {
     cursor: pointer;

@@ -37,7 +37,7 @@ const Result = () => {
 
   const calcDistance = () => {
     // Calc distance between coords
-    if (currentPoints) {
+    if (currentPoints && selectedPoints) {
       return (
         Math.sqrt(
           (selectedPoints[0] - currentPoints[0]) ** 2 + (selectedPoints[1] - currentPoints[1]) ** 2,
@@ -114,7 +114,7 @@ const Result = () => {
     dispatch(setNextLevel());
 
     dispatch(setCurrentPoints(null));
-    dispatch(setSelectedPoints([0, 0]));
+    dispatch(setSelectedPoints(null));
     dispatch(setFinalPoints(null));
   };
   const clickRestartGame = () => {

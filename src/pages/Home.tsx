@@ -5,6 +5,7 @@ import Skeleton from '../components/Skeleton';
 import { useSelector, useDispatch } from 'react-redux';
 import { setNextLevel, resetLevel, resetScore } from '../redux/slices/playerSlice';
 import { setCurrentPoints, setSelectedPoints, setFinalPoints } from '../redux/slices/pointsSlice';
+import { resetCities, resetCoords } from '../redux/slices/citiesSlice';
 
 type PackageItem = {
   name: string;
@@ -19,8 +20,11 @@ export const Home: FC = () => {
     dispatch(resetLevel());
 
     dispatch(setCurrentPoints(null));
-    dispatch(setSelectedPoints([0, 0]));
+    dispatch(setSelectedPoints(null));
     dispatch(setFinalPoints(null));
+
+    dispatch(resetCities());
+    dispatch(resetCoords());
   }, []);
   return (
     <>

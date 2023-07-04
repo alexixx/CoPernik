@@ -36,7 +36,7 @@ const Sidebar = () => {
   //   );
 
   return (
-    <div className={active ? 'sidebar active' : 'sidebar'}>
+    <div className="sidebar">
       {/* <button className="" onClick={() => toggleSidebar()}>
        {active ? 'hide' : 'show'}
      </button> */}
@@ -46,16 +46,8 @@ const Sidebar = () => {
      </div> */}
       <div className="sidebar__list">
         <Link to="/" className="sidebar__item">
-          Home
+          Exit
         </Link>
-        <Link to="/settings" className="sidebar__item">
-          Settings
-        </Link>
-      </div>
-      <div className="copyright copyright--sidebar">
-        <a href="https://github.com/alexixx" target="_blank">
-          by Alexixx
-        </a>
       </div>
     </div>
   );

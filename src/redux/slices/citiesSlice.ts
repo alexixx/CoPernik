@@ -72,6 +72,12 @@ const citiesSlice = createSlice({
       citiesNames = [action.payload];
       state.citiesNames = [action.payload];
     },
+    resetCoords(state) {
+      state.citiesCoords = null;
+    },
+    resetCities(state) {
+      state.citiesNames = [];
+    },
   },
   extraReducers: (builder) => {
     // builder.addCase(fetchCities.pending, (state, action) => {
@@ -96,6 +102,6 @@ const citiesSlice = createSlice({
 // };
 
 //pizzaSlice.actions == pizzaSlice.reducers
-export const { setItems, setCities } = citiesSlice.actions;
+export const { setItems, setCities, resetCoords, resetCities } = citiesSlice.actions;
 
 export default citiesSlice.reducer;
