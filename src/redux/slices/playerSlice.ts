@@ -36,10 +36,16 @@ const filterSlice = createSlice({
     setPolyline(state, action) {
       state.polyline = action.payload;
     },
+    resetLevel(state) {
+      state.level = 0;
+    },
+    resetScore(state) {
+      state.score = 0;
+    },
   },
 });
 
 //filterSlice.actions == filterSlice.reducers
-export const { addPoints, setNextLevel, setPolyline } = filterSlice.actions;
+export const { addPoints, setNextLevel, setPolyline, resetLevel, resetScore } = filterSlice.actions;
 
 export default filterSlice.reducer;

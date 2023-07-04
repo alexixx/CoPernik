@@ -9,6 +9,13 @@
   box-shadow: $shadow-morph-6px-outset;
   padding: 5%;
   animation: 0.3s bounce-in ease-in-out forwards;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
   & p {
     color: #fff;
   }
@@ -17,20 +24,24 @@
     color: #fff;
     font-size: 40px;
     margin-bottom: 15px;
+
     &--home {
       font-size: 55px;
       transition: 0.3s;
+
       &:hover {
         text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.6);
         transition: 0.3s;
       }
     }
   }
+
   &__subtitle {
     color: #fff;
     font-size: 20px;
     margin-bottom: 15px;
   }
+
   &__glass {
     background-color: #fff;
     width: 100%;
@@ -42,29 +53,35 @@
   &__buttons {
     margin-top: 60px;
   }
+
   &--main {
     height: 70%;
   }
+
   &--mini-map {
     position: absolute;
     top: 13%;
     left: 15%;
     width: 70%;
     height: 75%;
+
     & .btn-wrapper {
       display: flex;
       width: 100%;
       justify-content: center;
+
       //   margin-top: 30px;
       button {
         margin-right: 40px;
         padding: 10%;
+
         &:last-child {
           margin-right: 0;
         }
       }
     }
   }
+
   &--result {
     position: absolute;
     top: 0;
@@ -74,6 +91,7 @@
     margin: auto;
     width: 25%;
     height: 50%;
+
     & .score {
       display: flex;
       flex-direction: column;
@@ -89,6 +107,7 @@
       border-radius: 4px;
       background-color: $label-grey;
       overflow: hidden;
+
       & .bar {
         position: absolute;
         top: 0;
@@ -97,16 +116,50 @@
         background-color: #40f3c6;
         transition: 1.2s ease-in-out all;
       }
+
       & .numbers {
       }
     }
+
+    & > .btn-wrapper {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    & button {
+      padding: 10px 40px;
+
+      &.exit:hover {
+        box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.25), -6px -6px 12px rgba(255, 255, 255, 0.05);
+      }
+    }
+    & .exit {
+      margin-left: 20px;
+      background-color: #9eecd9;
+      color: #000;
+    }
+    & .result-text {
+      text-align: center;
+      color: #fff;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    & .emoji {
+      color: #fff;
+      font-size: 60px;
+    }
+
     @media (max-width: 768px) {
       width: 70%;
     }
+
     @media (max-width: 1170px) {
       width: 70%;
     }
   }
+
   &--info {
     position: absolute;
     right: 40px;
@@ -135,9 +188,11 @@
   0% {
     transform: scale(0.7);
   }
+
   50% {
     transform: scale(1.07);
   }
+
   100% {
     transform: scale(1);
   }

@@ -3,12 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Panorama, YMaps } from 'react-yandex-maps';
 import { RootState } from '../../redux/store';
 
-import { addPoints, setNextLevel } from '../../redux/slices/playerSlice';
+import { addPoints, setNextLevel, resetLevel } from '../../redux/slices/playerSlice';
 import {
   setCurrentPoints,
   setFinalPoints,
   setSelectedPoints,
 } from '../../redux/slices/pointsSlice';
+import { Link } from 'react-router-dom';
 
 const Result = () => {
   const dispatch = useDispatch();
@@ -74,11 +75,23 @@ const Result = () => {
     dispatch(setSelectedPoints([0, 0]));
     dispatch(setFinalPoints(null));
   };
+  const clickRestartGame = () => {
+    //Reset coordinates and clear lvl
+
+    dispatch(setNextLevel());
+
+    dispatch(setCurrentPoints(null));
+    dispatch(setSelectedPoints([0, 0]));
+    dispatch(setFinalPoints(null));
+
+    //  dispatch(resetLevel());
+  };
+
   return (
     <>
       {finalPoints && (
         <div className="modal modal--result">
-          <div className="modal__title">Your result</div>
+          <div className="modal__title">{level >= 5 ? 'Your final result' : 'Your result'}</div>
 
           <div className="modal__description">
             <p className="">Distance to the point {distance} km</p>
@@ -94,13 +107,40 @@ const Result = () => {
           </div>
           {level >= 5 ? (
             <>
-              <div className="result">Конец игры</div>
-              <div className="modal__buttons">
-                <button className="ok">Start again?</button>
+              <div className="result-text">
+                {score > 90 ? (
+                  <>
+                    {' '}
+                    Do you know this city!
+                    <br />
+                    <span className="emoji">😎</span>
+                  </>
+                ) : score < 30 ? (
+                  <>
+                    How do I get to...
+                    <br />
+                    <span className="emoji">😔</span>
+                  </>
+                ) : (
+                  <>
+                    Traveler <br />
+                    <span className="emoji">🚶‍♂️</span>
+                  </>
+                )}
+              </div>
+
+              <div className="btn-wrapper">
+                <button className="ok" onClick={() => clickRestartGame()}>
+                  Restart
+                </button>
+
+                <Link to="/">
+                  <button className="exit">Exit</button>
+                </Link>
               </div>
             </>
           ) : (
-            <div className="modal__buttons">
+            <div className="btn-wrapper">
               <button className="ok" onClick={() => clickNextLevel()}>
                 Next level
               </button>

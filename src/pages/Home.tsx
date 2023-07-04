@@ -2,6 +2,9 @@ import axios from 'axios';
 import { useState, useEffect, useRef, useCallback, FC } from 'react';
 import Menu from '../components/Menu';
 import Skeleton from '../components/Skeleton';
+import { useSelector, useDispatch } from 'react-redux';
+import { setNextLevel, resetLevel, resetScore } from '../redux/slices/playerSlice';
+import { setCurrentPoints, setSelectedPoints, setFinalPoints } from '../redux/slices/pointsSlice';
 
 type PackageItem = {
   name: string;
@@ -9,6 +12,16 @@ type PackageItem = {
 }[];
 
 export const Home: FC = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetScore());
+    dispatch(resetLevel());
+
+    dispatch(setCurrentPoints(null));
+    dispatch(setSelectedPoints([0, 0]));
+    dispatch(setFinalPoints(null));
+  }, []);
   return (
     <>
       <div className="home">
