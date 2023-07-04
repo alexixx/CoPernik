@@ -7,6 +7,7 @@ import Minimap from '../components/Minimap';
 import Result from '../components/Result';
 import Info from '../components/Info';
 import Sidebar from '../components/Sidebar';
+import Welcome from '../components/Welcome';
 import { RootState } from '../redux/store';
 // import ymaps from 'ymaps';
 

@@ -8,6 +8,7 @@
   border-radius: 25px;
   box-shadow: $shadow-morph-6px-outset;
   padding: 5%;
+
   animation: 0.3s bounce-in ease-in-out forwards;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -56,6 +57,7 @@
 
   &--main {
     height: 70%;
+    box-shadow: none;
   }
 
   &--mini-map {

@@ -101,7 +101,7 @@ const Minimap = () => {
           state={
             finalPoints
               ? { center: finalPoints, zoom: zoom, behaviors: [] }
-              : { center: [55.75, 37.57], zoom: 8 }
+              : { center: [55.75, 37.57], zoom: 4 }
           }
           options={{ autoFitToViewport: 'always', controls: [''] }}
           width={'100%'}

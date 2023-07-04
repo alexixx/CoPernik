@@ -20,6 +20,7 @@ const Result = () => {
 
   const score = useSelector((state: RootState) => state.player.score);
   const level = useSelector((state: RootState) => state.player.level);
+  const difficult = useSelector((state: RootState) => state.player.difficult);
 
   const [distance, setDistance] = useState(0);
 
@@ -50,16 +51,57 @@ const Result = () => {
 
   const calcResult = () => {
     console.log(distance);
+    switch (difficult) {
+      case 'easy':
+        if (distance < 4) {
+          dispatch(addPoints(100));
+          //   setResult(100);
+        } else if (distance > 50) {
+          dispatch(addPoints(5));
+          //   setResult(5);
+        } else {
+          dispatch(addPoints(20));
+          // setResult(20);
+        }
+        break;
+      case 'normal':
+        if (distance < 4) {
+          dispatch(addPoints(50));
+          //   setResult(100);
+        } else if (distance > 50) {
+          dispatch(addPoints(3));
+          //   setResult(5);
+        } else {
+          dispatch(addPoints(10));
+          // setResult(20);
+        }
 
-    if (distance < 4) {
-      dispatch(addPoints(100));
-      //   setResult(100);
-    } else if (distance > 50) {
-      dispatch(addPoints(5));
-      //   setResult(5);
-    } else {
-      dispatch(addPoints(20));
-      // setResult(20);
+        break;
+      case 'hard':
+        if (distance < 4) {
+          dispatch(addPoints(30));
+          //   setResult(100);
+        } else if (distance > 50) {
+          dispatch(addPoints(3));
+          //   setResult(5);
+        } else {
+          dispatch(addPoints(10));
+          // setResult(20);
+        }
+        break;
+
+      default:
+        if (distance < 4) {
+          dispatch(addPoints(50));
+          //   setResult(100);
+        } else if (distance > 50) {
+          dispatch(addPoints(3));
+          //   setResult(5);
+        } else {
+          dispatch(addPoints(10));
+          // setResult(20);
+        }
+        break;
     }
   };
   const calcScorePercent = () => {

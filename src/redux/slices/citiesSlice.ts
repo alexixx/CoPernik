@@ -13,7 +13,7 @@ interface CitiesSliceState {
 }
 
 // const citiesNames = ['Vladimir', 'Moscow'];
-const citiesNames = ['Moscow', 'Vladimir'];
+let citiesNames = ['Moscow', 'Vladimir'];
 
 export const fetchCities = createAsyncThunk('cities/fetchCities', async (params) => {
   // Возможно использовать ThunkAPI для более расширенной работы с запросом
@@ -57,7 +57,7 @@ export const fetchCities = createAsyncThunk('cities/fetchCities', async (params)
 
 const initialState: CitiesSliceState = {
   status: 'pending', // pending, success, error
-  citiesNames: ['Vladimir', 'Moscow'],
+  citiesNames: [],
   citiesCoords: null,
 };
 
@@ -67,6 +67,10 @@ const citiesSlice = createSlice({
   reducers: {
     setItems(state, action) {
       state.citiesCoords = action.payload;
+    },
+    setCities(state, action) {
+      citiesNames = [action.payload];
+      state.citiesNames = [action.payload];
     },
   },
   extraReducers: (builder) => {
@@ -92,6 +96,6 @@ const citiesSlice = createSlice({
 // };
 
 //pizzaSlice.actions == pizzaSlice.reducers
-export const { setItems } = citiesSlice.actions;
+export const { setItems, setCities } = citiesSlice.actions;
 
 export default citiesSlice.reducer;

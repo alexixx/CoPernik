@@ -15,12 +15,14 @@ interface FilterSliceState {
   score: number;
   level: 0;
   polyline: number[][] | null;
+  difficult: string;
 }
 
 const initialState: FilterSliceState = {
   score: 0,
   level: 0,
   polyline: null,
+  difficult: 'normal',
 };
 
 const filterSlice = createSlice({
@@ -36,6 +38,10 @@ const filterSlice = createSlice({
     setPolyline(state, action) {
       state.polyline = action.payload;
     },
+    setDifficult(state, action) {
+      state.difficult = action.payload;
+    },
+
     resetLevel(state) {
       state.level = 0;
     },
@@ -46,6 +52,7 @@ const filterSlice = createSlice({
 });
 
 //filterSlice.actions == filterSlice.reducers
-export const { addPoints, setNextLevel, setPolyline, resetLevel, resetScore } = filterSlice.actions;
+export const { addPoints, setNextLevel, setPolyline, setDifficult, resetLevel, resetScore } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

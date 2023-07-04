@@ -9,14 +9,16 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Singleplayer from './pages/Singleplayer';
 import Multiplayer from './pages/Multiplayer';
+import Welcome from './components/Welcome';
 
 function App() {
   return (
     <div className="container">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/game" element={<Welcome />} />
         <Route path="/singleplayer" element={<Singleplayer />} />
-        <Route path="/multiplayer" element={<Multiplayer />} />
+        {/* <Route path="/multiplayer" element={<Multiplayer />} /> */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>
