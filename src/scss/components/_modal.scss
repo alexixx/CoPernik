@@ -56,8 +56,9 @@
   }
 
   &--main {
-    height: 70%;
+    //  height: 70%;
     box-shadow: none;
+    //  background-color: transparent;
   }
 
   &--mini-map {
@@ -70,7 +71,7 @@
     //  width: 70%;
     //  height: 75%;
 
-    width: 250px;
+    width: 350px;
     height: 150px;
 
     & .btn-wrapper {
@@ -87,6 +88,18 @@
           margin-right: 0;
         }
       }
+    }
+    @media screen and (max-width: 1440px) {
+      width: 25%;
+    }
+    @media screen and (max-width: 1024px) {
+      width: 30%;
+    }
+    @media screen and (max-width: 768px) {
+      width: 35%;
+    }
+    @media screen and (max-width: 425px) {
+      width: 60%;
     }
   }
 
@@ -159,19 +172,29 @@
       font-size: 60px;
     }
 
-    @media (max-width: 768px) {
-      width: 70%;
+    @media screen and (max-width: 1440px) {
+      width: 30%;
+      height: 50%;
     }
-
-    @media (max-width: 1170px) {
-      width: 70%;
+    @media screen and (max-width: 1024px) {
+      width: 40%;
+      height: 50%;
+    }
+    @media screen and (max-width: 768px) {
+      width: 50%;
+      height: 50%;
+    }
+    @media screen and (max-width: 425px) {
+      width: 80%;
+      height: 50%;
     }
   }
 
   &--info {
     position: absolute;
-    right: 40px;
-    top: 40px;
+    left: 10px;
+    //  top: 40px;
+    top: 11px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -188,6 +211,15 @@
       color: #fff;
 
       box-shadow: 0px 0px 17px $gradient-color1;
+    }
+    @media screen and (max-width: 1440px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 900px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 550px) {
+      width: 60%;
     }
   }
   &--warning {

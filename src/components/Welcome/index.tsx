@@ -36,6 +36,7 @@ const Welcome = () => {
             Try to specify your location as much as possible. If you can score 100 or more points,
             then you know this city very well.
           </p>
+          <p>At a lower difficulty level, you will get more points.</p>
           <p className="">Have fun!</p>
           <div className="welcome-page__subtitle">Customize your game</div>
           <div className="settings">

@@ -16,12 +16,13 @@ const Minimap = () => {
   const [popupStatus, setPopupStatus] = useState(false);
   // const [polyLine, setPolyLine] = useState<DataPolyline>(null);
   const [localSelectedPoints, setLocalSelectedPoints] = useState<localSelectedPoints>();
-  const [minimapSize, setMinimapSize] = useState([350, 220]);
+  const [minimapSize, setMinimapSize] = useState([30, 220]);
 
   const polyline = useSelector((state: RootState) => state.player.polyline);
   const currentPoints = useSelector((state: RootState) => state.points.currentCoords);
   const selectedPoints = useSelector((state: RootState) => state.points.selectedCoords);
   const finalPoints = useSelector((state: RootState) => state.points.finalCoords);
+  const citiesCoords = useSelector((state: RootState) => state.cities.citiesCoords);
 
   const [loaderMnimap, setLoaderMinimap] = useState(false);
 
@@ -52,10 +53,10 @@ const Minimap = () => {
   };
   const onHoverMap = () => {
     console.log('HOVER MINIMAP');
-    if (!loaderMnimap) setMinimapSize([750, 420]);
+    if (!loaderMnimap) setMinimapSize([90, 420]);
   };
   const onLeaveleave = () => {
-    setMinimapSize([350, 220]);
+    setMinimapSize([30, 220]);
   };
   const clickPopupYes = () => {
     let pointsDifference = 0;
@@ -103,14 +104,14 @@ const Minimap = () => {
     setPopupStatus(false);
   };
 
-  const defaultCoordsForZoom = () => {};
+  if (citiesCoords) console.log([Number(citiesCoords[0][0]), Number(citiesCoords[0][3])]);
 
   return (
     <div
       className="mini-map__container"
       onMouseEnter={() => onHoverMap()}
       onMouseLeave={() => onLeaveleave()}
-      style={{ width: `${minimapSize[0]}px`, height: `${minimapSize[1]}px` }}>
+      style={{ width: `${minimapSize[0]}%`, height: `${minimapSize[1]}px` }}>
       <div className="mini-map" style={{ width: `100%`, height: `100%` }}>
         {/* <div className="placeholder-map"> </div> */}
         <YMaps key="mini-map">
@@ -118,7 +119,12 @@ const Minimap = () => {
             state={
               finalPoints
                 ? { center: finalPoints, zoom: zoom, behaviors: [] }
-                : { center: currentPoints ? currentPoints : [55.75, 37.57], zoom: 9 }
+                : {
+                    center: citiesCoords
+                      ? [Number(citiesCoords[0][0]), Number(citiesCoords[0][3])]
+                      : [55.75, 37.57],
+                    zoom: 9,
+                  }
             }
             options={{ autoFitToViewport: 'always', controls: [''] }}
             width={'100%'}
