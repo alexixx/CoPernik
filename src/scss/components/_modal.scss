@@ -62,10 +62,16 @@
 
   &--mini-map {
     position: absolute;
-    top: 13%;
-    left: 15%;
-    width: 70%;
-    height: 75%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    //  width: 70%;
+    //  height: 75%;
+
+    width: 250px;
+    height: 150px;
 
     & .btn-wrapper {
       display: flex;
@@ -75,7 +81,7 @@
       //   margin-top: 30px;
       button {
         margin-right: 40px;
-        padding: 10%;
+        padding: 20px 30px;
 
         &:last-child {
           margin-right: 0;

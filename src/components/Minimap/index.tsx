@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Map, YMaps, Polyline } from 'react-yandex-maps';
+import { Map, YMaps, Polyline, Placemark } from 'react-yandex-maps';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setSelectedPoints, setFinalPoints } from '../../redux/slices/pointsSlice';
@@ -83,11 +83,11 @@ const Minimap = () => {
 
       //Changing the zoom depending on the distance to the desired point
       if (pointsDifference > 20) {
-        setZoom(2);
+        setZoom(3);
       } else if (calcDifference() < 1.4) {
-        setZoom(8);
+        setZoom(10);
       } else {
-        setZoom(4);
+        setZoom(6);
       }
 
       dispatch(setPolyline([currentPoints, localSelectedPoints]));
@@ -122,15 +122,41 @@ const Minimap = () => {
             height={'100%'}
             onClick={(e: Event) => clickOnMiniMap(e)}>
             {finalPoints && polyline && (
-              <Polyline
-                geometry={polyline}
-                options={{
-                  balloonCloseButton: false,
-                  strokeColor: '#ffe600',
-                  strokeWidth: 4,
-                  strokeOpacity: 0,
-                }}
-              />
+              <>
+                <Polyline
+                  geometry={polyline}
+                  options={{
+                    balloonCloseButton: false,
+                    //   strokeColor: '#ffe600',
+                    strokeColor: '#000',
+                    strokeWidth: 4,
+                    strokeOpacity: 0,
+                    strokeStyle: {
+                      style: 'dot',
+                      offset: 5,
+                    },
+                  }}
+                />
+                <Placemark
+                  geometry={polyline[0]}
+                  options={{
+                    iconLayout: 'default#image',
+                    iconImageHref: '../img/placemarkTo.svg',
+                    //   iconOffset: [-25, -10],
+                    iconOffset: [0, -10],
+                    iconImageSize: [50, 50],
+                  }}
+                />
+                <Placemark
+                  geometry={polyline[1]}
+                  options={{
+                    iconLayout: 'default#image',
+                    iconImageHref: '../img/placemarkFrom.svg',
+                    iconOffset: [0, -10],
+                    iconImageSize: [60, 60],
+                  }}
+                />
+              </>
             )}
           </Map>
         </YMaps>
@@ -140,7 +166,7 @@ const Minimap = () => {
             <div className="modal__subtitle">Сhoose this point?</div>
             <div className="btn-wrapper">
               <button onClick={() => clickPopupYes()}>Yes</button>
-              <button onClick={() => clickPopupNo()}>Hmm...</button>
+              <button onClick={() => clickPopupNo()}>No</button>
             </div>
           </div>
         ) : (

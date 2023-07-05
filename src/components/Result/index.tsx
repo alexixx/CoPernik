@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Panorama, YMaps } from 'react-yandex-maps';
 import { RootState } from '../../redux/store';
 
-import { addPoints, setNextLevel, resetLevel } from '../../redux/slices/playerSlice';
+import { addPoints, setNextLevel, resetLevel, resetScore } from '../../redux/slices/playerSlice';
 import {
   setCurrentPoints,
   setFinalPoints,
@@ -44,7 +44,7 @@ const Result = () => {
         ) * 100
       );
     } else {
-      alert('current points отсутствует при расчитывании дистанции');
+      // alert('current points отсутствует при расчитывании дистанции');
       return 0;
     }
   };
@@ -120,13 +120,13 @@ const Result = () => {
   const clickRestartGame = () => {
     //Reset coordinates and clear lvl
 
-    dispatch(setNextLevel());
-
     dispatch(setCurrentPoints(null));
-    dispatch(setSelectedPoints([0, 0]));
+    dispatch(setSelectedPoints(null));
     dispatch(setFinalPoints(null));
 
-    //  dispatch(resetLevel());
+    dispatch(resetScore());
+    dispatch(resetLevel());
+    dispatch(setNextLevel());
   };
 
   return (
