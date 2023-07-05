@@ -1,4 +1,22 @@
 .root {
-    text-align: center;
-    margin: 30vh 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+
+  & > * {
+    color: #fff;
+  }
+}
+.title {
+  font-size: 230px;
+}
+.btnWrapper {
+  margin-top: 20px;
 }

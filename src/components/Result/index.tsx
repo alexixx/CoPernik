@@ -184,7 +184,7 @@ const Result = () => {
           ) : (
             <div className="btn-wrapper">
               <button className="ok" onClick={() => clickNextLevel()}>
-                Next level
+                Next
               </button>
             </div>
           )}

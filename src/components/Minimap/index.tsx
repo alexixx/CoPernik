@@ -6,7 +6,7 @@ import { setSelectedPoints, setFinalPoints } from '../../redux/slices/pointsSlic
 import { setPolyline } from '../../redux/slices/playerSlice';
 
 type DataPolyline = number[][] | null;
-type localSelectedPoints = number[];
+type localSelectedPoints = number[] | null;
 
 const Minimap = () => {
   const dispatch = useDispatch();
@@ -47,6 +47,8 @@ const Minimap = () => {
       setLocalSelectedPoints(e.get('coords'));
       setPopupStatus(true);
     }
+
+    console.log(localSelectedPoints);
   };
   const onHoverMap = () => {
     console.log('HOVER MINIMAP');
@@ -60,7 +62,7 @@ const Minimap = () => {
 
     if (currentPoints && localSelectedPoints) {
       // Calc final points for zoom (between selected and current points)
-
+      setLocalSelectedPoints(null);
       console.log('localSelectedPoints:', localSelectedPoints);
       dispatch(setSelectedPoints(localSelectedPoints));
       console.log('selctedPoints:', selectedPoints);
@@ -83,11 +85,11 @@ const Minimap = () => {
 
       //Changing the zoom depending on the distance to the desired point
       if (pointsDifference > 20) {
-        setZoom(3);
+        setZoom(9);
       } else if (calcDifference() < 1.4) {
-        setZoom(10);
+        setZoom(11);
       } else {
-        setZoom(6);
+        setZoom(11);
       }
 
       dispatch(setPolyline([currentPoints, localSelectedPoints]));
@@ -97,6 +99,7 @@ const Minimap = () => {
   };
 
   const clickPopupNo = () => {
+    setLocalSelectedPoints(null);
     setPopupStatus(false);
   };
 
@@ -141,9 +144,9 @@ const Minimap = () => {
                   geometry={polyline[0]}
                   options={{
                     iconLayout: 'default#image',
-                    iconImageHref: '../img/placemarkTo.svg',
+                    iconImageHref: '../img/placemarkFrom.svg',
                     //   iconOffset: [-25, -10],
-                    iconOffset: [0, -10],
+                    iconOffset: [-5, -10],
                     iconImageSize: [50, 50],
                   }}
                 />
@@ -151,12 +154,28 @@ const Minimap = () => {
                   geometry={polyline[1]}
                   options={{
                     iconLayout: 'default#image',
-                    iconImageHref: '../img/placemarkFrom.svg',
-                    iconOffset: [0, -10],
+                    iconImageHref: '../img/placemarkTo.svg',
+                    iconOffset: [-20, -20],
                     iconImageSize: [60, 60],
                   }}
                 />
               </>
+            )}
+            {localSelectedPoints ? (
+              <>
+                <div className="test-place">{localSelectedPoints}</div>
+                <Placemark
+                  geometry={localSelectedPoints}
+                  options={{
+                    iconLayout: 'default#image',
+                    iconImageHref: '../img/placemarkTo.svg',
+                    iconOffset: [-20, -20],
+                    iconImageSize: [60, 60],
+                  }}
+                />
+              </>
+            ) : (
+              ''
             )}
           </Map>
         </YMaps>

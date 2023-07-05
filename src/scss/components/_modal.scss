@@ -98,7 +98,7 @@
     left: 0;
     margin: auto;
     width: 25%;
-    height: 50%;
+    height: 60%;
 
     & .score {
       display: flex;
@@ -188,6 +188,26 @@
       color: #fff;
 
       box-shadow: 0px 0px 17px $gradient-color1;
+    }
+  }
+  &--warning {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+
+    width: 35%;
+    height: 30%;
+    & > .btn-wrapper {
+      margin-top: 20px;
+    }
+    & button {
+      margin-left: 20px;
+      &:first-child {
+        margin-left: 0px;
+      }
     }
   }
 }
