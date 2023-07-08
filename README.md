@@ -1,4 +1,4 @@
-![](presentation/1.gif)
+![](presentation/1.png)
 ![](presentation/2.png)
 ![](presentation/3.png)
 ![](presentation/4.png)
