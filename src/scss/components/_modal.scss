@@ -74,6 +74,7 @@
     width: 350px;
     height: 150px;
 
+    transition: 0.2s;
     & .btn-wrapper {
       display: flex;
       width: 100%;
@@ -89,6 +90,7 @@
         }
       }
     }
+
     @media screen and (max-width: 1440px) {
       width: 25%;
     }
@@ -111,7 +113,8 @@
     left: 0;
     margin: auto;
     width: 25%;
-    height: 60%;
+    min-height: 30%;
+    max-height: 55%;
 
     & .score {
       display: flex;
@@ -173,15 +176,15 @@
     }
 
     @media screen and (max-width: 1440px) {
-      width: 30%;
-      height: 50%;
-    }
-    @media screen and (max-width: 1024px) {
       width: 40%;
       height: 50%;
     }
+    @media screen and (max-width: 1024px) {
+      width: 52%;
+      height: 50%;
+    }
     @media screen and (max-width: 768px) {
-      width: 50%;
+      width: 69%;
       height: 50%;
     }
     @media screen and (max-width: 425px) {
@@ -192,9 +195,12 @@
 
   &--info {
     position: absolute;
-    left: 10px;
-    //  top: 40px;
-    top: 11px;
+    //  left: 10px;
+    //  top: 11px;
+
+    right: 35px;
+    top: 10px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;

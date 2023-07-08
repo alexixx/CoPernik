@@ -157,7 +157,7 @@ const BigPanorama = () => {
           <div className="panorama-main">
             <Panorama
               point={currentPoints}
-              options={{ controls: [''] }}
+              options={{ controls: [''], _markers: [''] }}
               width={'100%'}
               height={'100%'}
               onLoad={(e) => onPanoramaLoad(e)}

@@ -1,13 +1,30 @@
-# CoPernik
+## How to start
 
-## Available Scripts
+### `npm i`
 
-You need to run:
+### `npm run start`
 
-### `npm install`
+#
 
-For installig all packages of project
+#
 
-### `npm start`
+> Note: Use `--force` if you have problems installing packages
 
-For start project
+## How to play
+
+![](presentation/1.gif)
+![](presentation/2.gif)
+![](presentation/3.gif)
+![](presentation/4.gif)
+
+## Tech Stack
+
+![Static Badge](https://img.shields.io/badge/React-18.2.0-00ADD8?style=for-the-badge&color=green) ![Static Badge](https://img.shields.io/badge/Redux%20Toolkit-1.8.6-00ADD8?style=for-the-badge&color=%23593d88) ![Static Badge](https://img.shields.io/badge/TypeScript-4.84-00ADD8?style=for-the-badge) ![Static Badge](https://img.shields.io/badge/Sass-1.54.9-00ADD8?style=for-the-badge&color=%23c69) ![Static Badge](https://img.shields.io/badge/HTML-5.3-00ADD8?style=for-the-badge&color=orange)
+
+[OpenStreetMap](https://www.openstreetmap.org/#map=3/69.62/-74.90) - non-commercial web mapping project.
+
+## Roadmap
+
+- [x] Singleplayer
+  - [x] Choice of difficulty level and city
+- [ ] Multiplayer

@@ -7,6 +7,11 @@ import { setPolyline } from '../../redux/slices/playerSlice';
 
 type DataPolyline = number[][] | null;
 type localSelectedPoints = number[] | null;
+type localCityCoords = number[] | null;
+type voidTimer = () => void;
+
+//@ts-ignore
+var onLeaveMapTimer;
 
 const Minimap = () => {
   const dispatch = useDispatch();
@@ -16,6 +21,7 @@ const Minimap = () => {
   const [popupStatus, setPopupStatus] = useState(false);
   // const [polyLine, setPolyLine] = useState<DataPolyline>(null);
   const [localSelectedPoints, setLocalSelectedPoints] = useState<localSelectedPoints>();
+  const [localCityCoords, setLocalCityCoords] = useState<localCityCoords>();
   const [minimapSize, setMinimapSize] = useState([30, 220]);
 
   const polyline = useSelector((state: RootState) => state.player.polyline);
@@ -45,6 +51,7 @@ const Minimap = () => {
     // fixing the selected coordinates
 
     if (!selectedPoints) {
+      setLocalCityCoords(e.get('coords'));
       setLocalSelectedPoints(e.get('coords'));
       setPopupStatus(true);
     }
@@ -53,11 +60,19 @@ const Minimap = () => {
   };
   const onHoverMap = () => {
     console.log('HOVER MINIMAP');
+    //@ts-ignore
+    window.clearTimeout(onLeaveMapTimer);
     if (!loaderMnimap) setMinimapSize([90, 420]);
   };
   const onLeaveleave = () => {
-    setMinimapSize([30, 220]);
+    onLeaveMapTimer = window.setTimeout(() => {
+      setMinimapSize([30, 220]);
+    }, 500);
   };
+  const onClickMap = (e: any) => {
+    console.log('click on the map');
+  };
+
   const clickPopupYes = () => {
     let pointsDifference = 0;
 
@@ -119,6 +134,18 @@ const Minimap = () => {
             state={
               finalPoints
                 ? { center: finalPoints, zoom: zoom, behaviors: [] }
+                : localSelectedPoints
+                ? {
+                    center: localSelectedPoints
+                      ? [localSelectedPoints[0], localSelectedPoints[1]]
+                      : [55.75, 37.57],
+                    zoom: 9,
+                  }
+                : localCityCoords
+                ? {
+                    center: [Number(localCityCoords[0]), Number(localCityCoords[1])],
+                    zoom: 9,
+                  }
                 : {
                     center: citiesCoords
                       ? [Number(citiesCoords[0][0]), Number(citiesCoords[0][3])]
