@@ -1,16 +1,12 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 const Warning = () => {
   const [warningWindow, setWarningWindow] = useState(false);
 
   onkeydown = (e) => {
-    //  console.log(e.key);
-
     if ((e.ctrlKey && e.keyCode == 'R'.charCodeAt(0)) || e.key == 'F5') {
       e.preventDefault();
       setWarningWindow(true);
-      // console.log('reload');
-      //your saving code
     }
   };
 
