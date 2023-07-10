@@ -6,7 +6,7 @@ import { setDifficult } from '../../redux/slices/playerSlice';
 type City = string;
 type Difficult = string;
 
-const Welcome = () => {
+const Welcome: FC = () => {
   const dispatch = useDispatch();
 
   const [city, setCityCurrent] = useState<City>();

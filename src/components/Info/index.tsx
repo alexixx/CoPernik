@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 
-const Result = () => {
+const Result: FC = () => {
   const score = useSelector((state: RootState) => state.player.score);
   const level = useSelector((state: RootState) => state.player.level);
   const city = useSelector((state: RootState) => state.cities.citiesNames[0]);

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 
-const Warning = () => {
+const Warning: FC = () => {
   const [warningWindow, setWarningWindow] = useState(false);
 
   onkeydown = (e) => {

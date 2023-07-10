@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Panorama, YMaps } from 'react-yandex-maps';
 import { RootState } from '../../redux/store';
@@ -8,7 +8,7 @@ import { setCurrentPoints } from '../../redux/slices/pointsSlice';
 import { setNextLevel } from '../../redux/slices/playerSlice';
 import { fetchCities } from '../../redux/slices/citiesSlice';
 
-const BigPanorama = () => {
+const BigPanorama: FC = () => {
   const dispatch = useDispatch();
 
   const citiesCoords = useSelector((state: RootState) => state.cities.citiesCoords);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Map, YMaps, Polyline, Placemark } from 'react-yandex-maps';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
@@ -11,7 +11,7 @@ type localCityCoords = number[] | null;
 //@ts-ignore
 var onLeaveMapTimer;
 
-const Minimap = () => {
+const Minimap: FC = () => {
   const dispatch = useDispatch();
   // const [selectedPoints, setSelectedPoints] = useState<any>([0, 0]);
   // const [finalPoints, setFinalPoints] = useState<any>();

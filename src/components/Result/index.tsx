@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import {
   setSelectedPoints,
 } from '../../redux/slices/pointsSlice';
 
-const Result = () => {
+const Result: FC = () => {
   const dispatch = useDispatch();
 
   const currentPoints = useSelector((state: RootState) => state.points.currentCoords);
