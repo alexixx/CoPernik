@@ -11,8 +11,12 @@
 
 ## Getting Started
 
-### `npm i`
+```sh
+  npm i
+```
 
-### `npm run start`
+```sh
+npm run start
+```
 
 > Note: Use `--force` if you have problems installing packages
