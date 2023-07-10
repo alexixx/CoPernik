@@ -1,22 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// TYEPS
-
-// INTERFACES
-
 interface CitiesSliceState {
-  //   items: PizzaItem[];
   status: 'pending' | 'success' | 'error';
   citiesNames: string[];
   citiesCoords: string[][] | null;
 }
 
-// const citiesNames = ['Vladimir', 'Moscow'];
 let citiesNames = ['Moscow', 'Vladimir'];
 
 export const fetchCities = createAsyncThunk('cities/fetchCities', async (params) => {
-  // Возможно использовать ThunkAPI для более расширенной работы с запросом
+  // It is possible to use ThunkAPI for more advanced request handling
   let finalData = [];
   const getPolygons = async () => {
     let result = [];
@@ -30,18 +24,12 @@ export const fetchCities = createAsyncThunk('cities/fetchCities', async (params)
       });
 
       if (data) {
-        // console.log(data);
         let polygon = [];
         for (let i = 0; i < data[0].boundingbox.length; i++) {
           // Increasing the probability of finding a panorama by reducing the size of the polygon
           polygon.push((data[0].boundingbox[i] - 0.045).toFixed(6));
-          // polygon.push((data[0].boundingbox[i] - 0.15).toFixed(6));
-          // polygon.push(data[0].boundingbox)
         }
-
         result.push(polygon);
-
-        // console.log(result);
       }
     }
 
@@ -51,7 +39,6 @@ export const fetchCities = createAsyncThunk('cities/fetchCities', async (params)
   //@ts-ignore
 
   finalData = await getPolygons();
-  //   return polygon as PizzaItem[];
   return finalData;
 });
 
@@ -80,11 +67,6 @@ const citiesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // builder.addCase(fetchCities.pending, (state, action) => {
-    //   state.status = 'pending';
-    //   state.citiesCoords = [];
-    // });
-
     builder.addCase(fetchCities.fulfilled, (state, action) => {
       state.citiesCoords = action.payload;
       state.status = 'success';
@@ -97,11 +79,5 @@ const citiesSlice = createSlice({
   },
 });
 
-// export const selectorPizzas = (selector) => {
-//   return (state) => state.pizzas[selector];
-// };
-
-//pizzaSlice.actions == pizzaSlice.reducers
 export const { setItems, setCities, resetCoords, resetCities } = citiesSlice.actions;
-
 export default citiesSlice.reducer;
