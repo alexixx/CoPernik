@@ -1,11 +1,6 @@
 import axios from 'axios';
-import { useState, useEffect, useRef, useCallback, FC } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
-
-type PackageItem = {
-  name: string;
-  homepage?: string;
-}[];
 
 export const Menu: FC = () => {
   //   return (

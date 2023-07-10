@@ -1,8 +1,5 @@
 import { FC, useState } from 'react';
 
-import ContentLoader from 'react-content-loader';
-import { setInterval } from 'timers';
-
 const phrases = [
   'Just a second',
   'Looking for a suitable place',

@@ -5,10 +5,8 @@ import { RootState } from '../../redux/store';
 import { setSelectedPoints, setFinalPoints } from '../../redux/slices/pointsSlice';
 import { setPolyline } from '../../redux/slices/playerSlice';
 
-type DataPolyline = number[][] | null;
 type localSelectedPoints = number[] | null;
 type localCityCoords = number[] | null;
-type voidTimer = () => void;
 
 //@ts-ignore
 var onLeaveMapTimer;
