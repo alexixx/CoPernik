@@ -32,7 +32,7 @@ const Minimap = () => {
 
   useEffect(() => {
     // Resetting the zoom and coords for polygon when starting a new level
-    console.log('СБРОС КООРДИНАТ ДЛЯ POLYLINE');
+    // Reset coords for polyline
 
     dispatch(setPolyline(null));
     setZoom(1);
@@ -56,19 +56,17 @@ const Minimap = () => {
 
     console.log(localSelectedPoints);
   };
+
   const onHoverMap = () => {
-    console.log('HOVER MINIMAP');
     //@ts-ignore
     window.clearTimeout(onLeaveMapTimer);
     if (!loaderMnimap) setMinimapSize([90, 420]);
   };
+
   const onLeaveleave = () => {
     onLeaveMapTimer = window.setTimeout(() => {
       setMinimapSize([30, 220]);
     }, 500);
-  };
-  const onClickMap = (e: any) => {
-    console.log('click on the map');
   };
 
   const clickPopupYes = () => {
@@ -77,9 +75,7 @@ const Minimap = () => {
     if (currentPoints && localSelectedPoints) {
       // Calc final points for zoom (between selected and current points)
       setLocalSelectedPoints(null);
-      console.log('localSelectedPoints:', localSelectedPoints);
       dispatch(setSelectedPoints(localSelectedPoints));
-      console.log('selctedPoints:', selectedPoints);
 
       dispatch(
         setFinalPoints([
@@ -161,7 +157,6 @@ const Minimap = () => {
                   geometry={polyline}
                   options={{
                     balloonCloseButton: false,
-                    //   strokeColor: '#ffe600',
                     strokeColor: '#000',
                     strokeWidth: 4,
                     strokeOpacity: 0,
