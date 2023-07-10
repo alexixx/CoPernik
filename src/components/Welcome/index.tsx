@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setCities } from '../../redux/slices/citiesSlice';
 import { setDifficult } from '../../redux/slices/playerSlice';
