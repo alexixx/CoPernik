@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Panorama, YMaps } from 'react-yandex-maps';
 import { RootState } from '../../redux/store';
+import { Link } from 'react-router-dom';
 
 import { addPoints, setNextLevel, resetLevel, resetScore } from '../../redux/slices/playerSlice';
 import {
@@ -9,7 +9,6 @@ import {
   setFinalPoints,
   setSelectedPoints,
 } from '../../redux/slices/pointsSlice';
-import { Link } from 'react-router-dom';
 
 const Result = () => {
   const dispatch = useDispatch();
@@ -44,7 +43,6 @@ const Result = () => {
         ) * 100
       );
     } else {
-      // alert('current points отсутствует при расчитывании дистанции');
       return 0;
     }
   };
@@ -55,57 +53,42 @@ const Result = () => {
       case 'easy':
         if (distance < 4) {
           dispatch(addPoints(100));
-          //   setResult(100);
         } else if (distance > 50) {
           dispatch(addPoints(5));
-          //   setResult(5);
         } else {
           dispatch(addPoints(20));
-          // setResult(20);
         }
         break;
       case 'normal':
         if (distance < 4) {
           dispatch(addPoints(50));
-          //   setResult(100);
         } else if (distance > 50) {
           dispatch(addPoints(3));
-          //   setResult(5);
         } else {
           dispatch(addPoints(10));
-          // setResult(20);
         }
 
         break;
       case 'hard':
         if (distance < 4) {
           dispatch(addPoints(30));
-          //   setResult(100);
         } else if (distance > 50) {
           dispatch(addPoints(3));
-          //   setResult(5);
         } else {
           dispatch(addPoints(10));
-          // setResult(20);
         }
         break;
 
       default:
         if (distance < 4) {
           dispatch(addPoints(50));
-          //   setResult(100);
         } else if (distance > 50) {
           dispatch(addPoints(3));
-          //   setResult(5);
         } else {
           dispatch(addPoints(10));
-          // setResult(20);
         }
         break;
     }
-  };
-  const calcScorePercent = () => {
-    return score;
   };
 
   const clickNextLevel = () => {
@@ -137,8 +120,6 @@ const Result = () => {
 
           <div className="modal__description">
             <p className="">Distance to the point {distance} km</p>
-            {/* <p className=""></p> */}
-            {/* <p className="">{level} lvl</p> */}
           </div>
           <div className="score">
             <div className="modal__subtitle">Score {score}</div>
@@ -175,7 +156,6 @@ const Result = () => {
                 <button className="ok" onClick={() => clickRestartGame()}>
                   Restart
                 </button>
-
                 <Link to="/">
                   <button className="exit">Exit</button>
                 </Link>
@@ -192,35 +172,6 @@ const Result = () => {
       )}
     </>
   );
-
-  // return (
-  //   <>
-  //     {
-  //       <div className="modal modal--result">
-  //         <div className="modal__title">Your result</div>
-
-  //         <div className="modal__description">
-  //           <p className="">Distance to the point {distance} km</p>
-  //           {/* <p className=""></p> */}
-  //           <p className="">{level} lvl</p>
-  //         </div>
-  //         <div className="score">
-  //           <div className="modal__subtitle">Score {score}</div>
-  //           <div className="progressbar">
-  //             <div className="bar" style={{ width: `${score}%` }}></div>
-  //             <div className="numbers"></div>
-  //           </div>
-  //         </div>
-
-  //         <div className="modal__buttons">
-  //           <button className="ok" onClick={() => clickNextLevel()}>
-  //             Next level
-  //           </button>
-  //         </div>
-  //       </div>
-  //     }
-  //   </>
-  // );
 };
 
 export default Result;
