@@ -42,7 +42,5 @@ const pointsSlice = createSlice({
   },
 });
 
-//cartSlice.actions == cartSlice.reducers
 export const { setCurrentPoints, setFinalPoints, setSelectedPoints } = pointsSlice.actions;
-
 export default pointsSlice.reducer;
