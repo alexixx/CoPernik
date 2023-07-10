@@ -1,14 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// TYEPS
-
-// export type SortSlice = {
-//   name: string;
-//   sortType: 'rating' | 'title' | 'price';
-//   // sortType: string,
-//   sortDirection?: boolean;
-// };
-
 // INTERFACES
 
 interface FilterSliceState {
@@ -41,7 +32,6 @@ const filterSlice = createSlice({
     setDifficult(state, action) {
       state.difficult = action.payload;
     },
-
     resetLevel(state) {
       state.level = 0;
     },
@@ -50,9 +40,6 @@ const filterSlice = createSlice({
     },
   },
 });
-
-//filterSlice.actions == filterSlice.reducers
 export const { addPoints, setNextLevel, setPolyline, setDifficult, resetLevel, resetScore } =
   filterSlice.actions;
-
 export default filterSlice.reducer;
