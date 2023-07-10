@@ -1,16 +1,9 @@
-import axios from 'axios';
-import { useState, useEffect, useRef, useCallback, FC } from 'react';
+import { useEffect, FC } from 'react';
 import Menu from '../components/Menu';
-import Skeleton from '../components/Skeleton';
-import { useSelector, useDispatch } from 'react-redux';
-import { setNextLevel, resetLevel, resetScore } from '../redux/slices/playerSlice';
+import { useDispatch } from 'react-redux';
+import { resetLevel, resetScore } from '../redux/slices/playerSlice';
 import { setCurrentPoints, setSelectedPoints, setFinalPoints } from '../redux/slices/pointsSlice';
 import { resetCities, resetCoords } from '../redux/slices/citiesSlice';
-
-type PackageItem = {
-  name: string;
-  homepage?: string;
-}[];
 
 export const Home: FC = () => {
   const dispatch = useDispatch();
